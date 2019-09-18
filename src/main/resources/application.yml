@@ -22,17 +22,13 @@ eureka:
   server:
     #自我保护关机制
     enable-self-preservation: false
-  #在默认情况下erureka server也是一个eureka client，必须要指定一个 server
   client:
-    #禁止本身注册
-    register-with-eureka: false
-    #禁止获取注册服务地址
-    fetch-registry: false
-    #服务中心地址
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 ###
 zuul:
   add-host-header: true
   routes:
+    study-springcloud-provider:
+      path
 
