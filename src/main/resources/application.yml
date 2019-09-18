@@ -20,7 +20,6 @@ eureka:
     #默认90s
     lease-expiration-duration-in-seconds: 15
   server:
-    #自我保护关机制
     enable-self-preservation: false
   client:
     service-url:

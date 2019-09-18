@@ -23,6 +23,7 @@ public class ErrorHandlerController implements ErrorController {
     public Object error(HttpServletRequest request, HttpServletResponse response) {
         RequestContext ctx = RequestContext.getCurrentContext();
         ZuulException exception = (ZuulException) ctx.getThrowable();
-        return Result.choose(exception.nStatusCode, exception.getMessage());
+//        return Result.choose(exception.nStatusCode, exception.getMessage());
+        return null;
     }
 }
