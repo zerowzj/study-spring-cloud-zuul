@@ -34,8 +34,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zuul-server</artifactId>
-            <!--            <version>1.2.5.RELEASE</version>-->
+            <artifactId>spring-cloud-starter-zuul</artifactId>
         </dependency>
     </dependencies>
 </project>
