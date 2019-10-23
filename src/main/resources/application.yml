@@ -1,6 +1,5 @@
 ###
 server:
-  address: 127.0.0.1
   port: 7000
 ###
 logging:
@@ -24,5 +23,7 @@ zuul:
   add-host-header: true
   routes:
     study-springcloud-provider:
-      path
+      path: /**
+      serviceId: sdffsf
+      sensitiveHeaders: "*"
 
