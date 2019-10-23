@@ -1,7 +1,7 @@
 package study.springcloud.zuul;
 
 import org.springframework.boot.SpringApplication;
-import study.springcloud.zuul.support.config.SpringBootCfg;
+import study.springcloud.zuul.support.SpringBootCfg;
 
 public class Startup {
 
