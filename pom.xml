@@ -84,31 +84,11 @@
                 </executions>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <!-- 其声明值true和false 表明我们是否要执行下列声明的配置文件 -->
-                    <!--<skipAssembly>false</skipAssembly>-->
-                    <!--<appendAssemblyId>false</appendAssemblyId>-->
+                    <skipAssembly>false</skipAssembly>
+                    <appendAssemblyId>false</appendAssemblyId>
                     <descriptors>
-                    <descriptor>src/main/assembly/assembly.xml</descriptor>
+                        <descriptor>src/main/assembly/assembly.xml</descriptor>
                     </descriptors>
-                    <!-- 官方提供的定制化打包方式（不建议使用） -->
-                    <descriptorRefs>
-                        <!-- 会将所有依赖都解压打包到生成物中 -->
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                        <!-- 类似于默认打包，会将bin目录下的文件打到包中 -->
-                        <!--<descriptorRef>bin</descriptorRef>-->
-                        <!-- 只将源码目录下的文件打包 -->
-                        <!--<descriptorRef>src</descriptorRef>-->
-                        <!-- 将整个project资源打包 -->
-                        <!--<descriptorRef>project</descriptorRef>-->
-                    </descriptorRefs>
-<!--                    <archive>-->
-<!--                        &lt;!&ndash; MANIFEST.MF文件 &ndash;&gt;-->
-<!--                        <manifest>-->
-<!--                            <mainClass>study.dubbo.Startup</mainClass>-->
-<!--                            <addClasspath>true</addClasspath>-->
-<!--                            <classpathPrefix>lib/</classpathPrefix>-->
-<!--                        </manifest>-->
-<!--                    </archive>-->
                 </configuration>
             </plugin>
         </plugins>
