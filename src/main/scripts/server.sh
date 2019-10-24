@@ -25,6 +25,7 @@ stop() {
   if [ -n "$pid" ]; then
     kill -9 $pid
   fi
+
 }
 
 case $1 in
