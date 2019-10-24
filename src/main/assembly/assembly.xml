@@ -7,11 +7,9 @@
     <formats>
         <format>tar.gz</format>
     </formats>
-    <includeBaseDirectory>false</includeBaseDirectory>
+    <includeBaseDirectory>true</includeBaseDirectory>
     <baseDirectory>study-springcloud-zuul</baseDirectory>
-    <!-- ==================== -->
-    <!-- （★）文件集合         -->
-    <!-- ==================== -->
+
     <fileSets>
         <!-- bin目录 -->
         <fileSet>
