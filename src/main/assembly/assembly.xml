@@ -1,0 +1,68 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/2.6"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/2.6
+          http://maven.apache.org/xsd/assembly-2.6.xsd">
+    <!-- ==================== -->
+    <!-- （★）基本信息         -->
+    <!-- ==================== -->
+    <id>${project.artifactId}-assembly-${project.version}</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <baseDirectory>study-springcloud-zuul</baseDirectory>
+    <!-- ==================== -->
+    <!-- （★）文件集合         -->
+    <!-- ==================== -->
+    <fileSets>
+        <!-- 配置 -->
+        <!--<fileSet>-->
+        <!--<directory>${project.build.directory}/classes</directory>-->
+        <!--<outputDirectory>conf</outputDirectory>-->
+        <!--<excludes>-->
+        <!--<exclude>study/**</exclude>-->
+        <!--</excludes>-->
+        <!--<directoryMode>0755</directoryMode>-->
+        <!--<fileMode>0755</fileMode>-->
+        <!--</fileSet>-->
+        <!-- resources目录 -->
+<!--        <fileSet>-->
+<!--            <directory>src/main/resources</directory>-->
+<!--            <outputDirectory>conf</outputDirectory>-->
+<!--            <includes>-->
+<!--                <include>spring/*.*</include>-->
+<!--            </includes>-->
+<!--            <directoryMode>0755</directoryMode>-->
+<!--            <fileMode>0755</fileMode>-->
+<!--        </fileSet>-->
+        <!-- profiles目录 -->
+<!--        <fileSet>-->
+<!--            <directory>src/main/profiles/${env}</directory>-->
+<!--            <outputDirectory>conf</outputDirectory>-->
+<!--            <includes>-->
+<!--                <include>*.*</include>-->
+<!--            </includes>-->
+<!--            <directoryMode>0755</directoryMode>-->
+<!--            <fileMode>0755</fileMode>-->
+<!--        </fileSet>-->
+        <!-- bin目录 -->
+        <fileSet>
+            <directory>src/main/scripts</directory>
+            <outputDirectory>bin</outputDirectory>
+            <includes>
+                <include>*.*</include>
+            </includes>
+            <directoryMode>0755</directoryMode>
+            <fileMode>0755</fileMode>
+        </fileSet>
+    </fileSets>
+    <!-- ==================== -->
+    <!-- （★）依赖集合         -->
+    <!-- ==================== -->
+<!--    <dependencySets>-->
+<!--        <dependencySet>-->
+<!--            <outputDirectory>lib</outputDirectory>-->
+<!--            <useProjectArtifact>true</useProjectArtifact>-->
+<!--        </dependencySet>-->
+<!--    </dependencySets>-->
+</assembly>
