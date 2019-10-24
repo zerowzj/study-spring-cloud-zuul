@@ -1,7 +1,7 @@
 #!/bin/bash
 
-JAR_FILE=/app/study-springcloud-eureka-1.0.jar
-LOG_FILE=/app/stdout.log
+JAR_FILE=/app/study-springcloud-zuul/study-springcloud-zuul-1.0.jar
+LOG_FILE=/app/study-springcloud-zuulstdout.log
 
 JAVA_MEM_OPTS=" -server -Xms512M -Xmx512M -Xmn128M -Xss128M -XX:PermSize=128M -XX:MaxPermSize=512M"
 JAVA_GC_OPTS=" -XX:+PrintGC -XX:PrintGCDetails -XX:PrintGCTime"
