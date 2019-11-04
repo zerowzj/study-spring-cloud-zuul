@@ -11,11 +11,9 @@ spring:
 
 #注册中心配置
 eureka:
-  instance:
-    hostname: 114.67.102.8
-    prefer-ip-address: true
   client:
-    defaultZone: http://114.67.102.8:7100/eureka/
+    service-url:
+      defaultZone: http://114.67.102.8:7100/eureka/
 #路由转发超时配置
 ribbon:
   ReadTimeout: 5000
@@ -26,5 +24,5 @@ zuul:
   routes:
     study-springcloud-provider:
       path: /**
-      serviceId:
+      serviceId: study-springcloud-provider
       sensitiveHeaders: "*"
