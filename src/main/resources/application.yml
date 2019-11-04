@@ -7,22 +7,20 @@ logging:
 #
 spring:
   application:
-    name: springcloud-zuul
+    name: study-springcloud-zuul
 
-# 注册中心配置
-#eureka:
-#  instance:
-#    hostname: 127.0.0.1
-#    prefer-ip-address: true
-#  client:
-#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-
-# 路由转发超时配置
+#注册中心配置
+eureka:
+  instance:
+    hostname: 114.67.102.8
+    prefer-ip-address: true
+  client:
+    defaultZone: http://114.67.102.8:7100/eureka/
+#路由转发超时配置
 ribbon:
   ReadTimeout: 5000
   SocketTimeout: 5000
-
-# 服务转发配置
+#服务转发配置
 zuul:
   add-host-header: true
   routes:
