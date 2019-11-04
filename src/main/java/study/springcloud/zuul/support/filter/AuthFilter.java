@@ -18,10 +18,10 @@ public class AuthFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
         RequestContext ctx = RequestContext.getCurrentContext();
-        ctx.setSendZuulResponse(false);
-        ctx.setResponseBody("sadfasdf");
-        ctx.getResponse().setContentType("application/json; charset=utf-8");
-        return false;
+//        ctx.setSendZuulResponse(false);
+//        ctx.setResponseBody("sadfasdf");
+//        ctx.getResponse().setContentType("application/json; charset=utf-8");
+        return true;
     }
 
     @Override
