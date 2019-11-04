@@ -5,7 +5,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @EnableZuulProxy
-@ServletComponentScan(basePackages = "study.springcloud.zuul")
+//@ServletComponentScan(basePackages = "study.springcloud.zuul")
 @SpringBootApplication(scanBasePackages = "study.springcloud.zuul")
 public class SpringBootCfg {
 

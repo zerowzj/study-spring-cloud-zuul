@@ -6,6 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Component
 public class AuthFilter extends ZuulFilter {
 
@@ -13,7 +16,9 @@ public class AuthFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-
+        RequestContext ctx = RequestContext.getCurrentContext();
+        HttpServletResponse response = ctx.getResponse();
+        HttpServletRequest request = ctx.getRequest();
         return true;
     }
 
