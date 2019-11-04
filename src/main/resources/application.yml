@@ -22,5 +22,5 @@ zuul:
   routes:
     study-springcloud-provider:
       path: /**
-      serviceId: study-springcloud-provider
-      sensitiveHeaders: "*"
+      service-id: study-springcloud-provider
+      sensitive-headers: "*"
