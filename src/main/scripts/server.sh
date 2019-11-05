@@ -1,7 +1,8 @@
 #!/bin/bash
 
-JAR_FILE=/app/study-springcloud-zuul/study-springcloud-zuul-1.0.jar
-LOG_FILE=/app/study-springcloud-zuulstdout.log
+DEPLOY_DIR=/app/study-springcloud-zuul
+JAR_FILE=$DEPLOY_DIR/study-springcloud-zuul-1.0.jar
+LOG_FILE=$DEPLOY_DIR/stdout.log
 
 JAVA_MEM_OPTS=" -server -Xms512M -Xmx512M -Xmn128M -Xss128M -XX:PermSize=128M -XX:MaxPermSize=512M"
 JAVA_GC_OPTS=" -XX:+PrintGC -XX:PrintGCDetails -XX:PrintGCTime"
@@ -9,7 +10,7 @@ JAVA_OPTS=$JAVA_MEM_OPTS
 d
 get_pid() {
   pid=$(ps -ef | grep $JAR_FILE | grep -v grep | awk '{ print $2 }')
-  echo "$pid"
+  echo "===> $pid"
 }
 start() {
   pid=$(get_pid)
