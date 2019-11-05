@@ -19,20 +19,27 @@ eureka:
       defaultZone: http://114.67.102.8:7100/eureka/
 #服务转发配置
 zuul:
+  #路由前缀
   prefix: /api
+  #忽略表达式
   ignored-services: aa
   ignored-headers: Cookie
   ignored-patterns: /**/hello/**
+  #全局过滤
   sensitiveHeaders: Cookie,Set-Cookie,Authorization
-  add-host-header: true
+  #全局重试
+  retryable: true
   routes:
-    study-spring:
+    study-springcloud-provider1:
       path:
       url:
-    study-springcloud-provider:
+    study-springcloud-provider2:
       path: /**
       service-id: study-springcloud-provider
+      #路由过滤
       sensitive-headers: "*"
+      #路由重试
+      retryable: true
 #Ribbon支持
 ribbon:
   #连接超时
