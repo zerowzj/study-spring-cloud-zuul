@@ -9,7 +9,7 @@ spring:
   application:
     name: study-springcloud-zuul
 
-#注册中心配置
+# 注册中心配置
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
@@ -17,7 +17,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://114.67.102.8:7100/eureka/
-#服务转发配置
+# 服务转发配置
 zuul:
   #路由前缀
   prefix: /api
@@ -40,11 +40,11 @@ zuul:
       sensitive-headers: "*"
       #路由重试
       retryable: true
-#Ribbon支持
+# Ribbon支持
 ribbon:
   #连接超时
   ConnectTimeout: 6000
   #转发超时
   ReadTimeout:
-#Hystrix支持
+# Hystrix支持
 hystrix:
