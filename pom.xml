@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <springcloud.version>Finchley.SR4</springcloud.version>
+        <docker.image.prefix>study</docker.image.prefix>
     </properties>
 
     <parent>
@@ -99,6 +100,39 @@
                     </descriptors>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.13</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <!--如果package时不想用docker打包,就注释掉这个goal-->
+                        <goals>
+                            <goal>build</goal>
+                            <goal>tag</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
+                    <!-- 上下文目录-->
+                    <!--                    <contextDirectory>${project.basedir}</contextDirectory>-->
+                    <!-- 生成镜像时相关信息存储位置 -->
+                    <!--                    <dockerInfoDirectory>src/main/docker</dockerInfoDirectory>-->
+                    <!--                    <dockerConfigFile>src/main/docker</dockerConfigFile>-->
+                    <!--Dockerfile位置-->
+                    <!--                    <dockerfile>src/main/docker/Dockerfile</dockerfile>-->
+                    <!--镜像仓库-->
+                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                    <!--镜像TAG，不指定默认为latest-->
+                    <tag>1</tag>
+                    <buildArgs>
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -116,6 +150,12 @@
             <id>test</id>
             <properties>
                 <env>test</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>prod</env>
             </properties>
         </profile>
     </profiles>
