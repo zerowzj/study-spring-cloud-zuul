@@ -12,4 +12,4 @@ RUN echo 'Asia/Shanghai' >/etc/timezone
 #
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/xdfapp/app.jar"]
 #
-EXPOSE 7010
+EXPOSE 7020
