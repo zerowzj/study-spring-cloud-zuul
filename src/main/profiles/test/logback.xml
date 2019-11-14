@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="PROJECT_NAME" value="study-springcloud-eureka"/>
+    <property name="PROJECT_NAME" value="study-springcloud-zuul"/>
     <property name="LOG_HOME" value="/xdfapp/logs/${PROJECT_NAME}"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] [%5level] [%class:%line] - %m%n</pattern>
+        </encoder>
+    </appender>
 
     <appender name="FILE_DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder>
@@ -17,7 +23,6 @@
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
     </appender>
-
     <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] [%5level] [%class:%line] - %m%n</pattern>
@@ -43,12 +48,13 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/web_debug.log.%d{yyyy_MM_dd}</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/web_debug.log.%d{yyyy-MM-dd}</fileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
     </appender>
 
     <root level="INFO">
+        <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE_DEBUG"/>
         <appender-ref ref="FILE_INFO"/>
         <appender-ref ref="FILE_ERROR"/>
