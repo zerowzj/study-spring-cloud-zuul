@@ -16,7 +16,7 @@ eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://114.67.102.8:7100/eureka/
+      defaultZone: http://114.67.102.8:7010/eureka/
 # 服务转发配置
 zuul:
   #路由前缀
