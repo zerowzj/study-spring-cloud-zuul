@@ -23,10 +23,24 @@ ribbon:
   ConnectTimeout: 6000
   #转发超时
   ReadTimeout:
+  # 是否对所有操作重试
+  OkToRetryOnAllOperations: true
+  # 同一服务不同实例的重试次数
+  MaxAutoRetriesNextServer: 2
+  # 同一实例的重试次数
+  MaxAutoRetries: 1
 ### Hystrix支持 ###
 hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 6000 # 熔断超时时长：6000ms
 ### 服务转发配置 ###
 zuul:
+  ribbon:
+    eager-load: true
   #路由前缀
   prefix: /api
   #忽略表达式
