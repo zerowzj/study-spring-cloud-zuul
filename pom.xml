@@ -33,6 +33,9 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- =============== -->
+        <!-- Zuul            -->
+        <!-- =============== -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zuul</artifactId>
