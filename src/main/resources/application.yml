@@ -17,16 +17,24 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://114.67.102.8:7010/eureka/
-### Ribbon支持 ###
+####################
+# Ribbon支持
+####################
 ribbon:
   #连接超时
   ConnectTimeout: 6000
   #转发超时
   ReadTimeout:
-### Hystrix支持 ###
+####################
+# Hystrix支持
+####################
 hystrix:
-### 服务转发配置 ###
+####################
+# 服务转发配置
+####################
 zuul:
+  ribbon:
+    eager-load: true
   #路由前缀
   prefix: /api
   #忽略表达式
