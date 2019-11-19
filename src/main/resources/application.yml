@@ -8,8 +8,9 @@ logging:
 spring:
   application:
     name: study-springcloud-zuul
-
-### 注册中心配置 ###
+####################
+# Eureka
+####################
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
@@ -18,7 +19,7 @@ eureka:
     service-url:
       defaultZone: http://114.67.102.8:7010/eureka/
 ####################
-# Ribbon支持
+# Ribbon
 ####################
 ribbon:
   #连接超时
@@ -26,11 +27,11 @@ ribbon:
   #转发超时
   ReadTimeout:
 ####################
-# Hystrix支持
+# Hystrix
 ####################
 hystrix:
 ####################
-# 服务转发配置
+# Route
 ####################
 zuul:
   ribbon:
