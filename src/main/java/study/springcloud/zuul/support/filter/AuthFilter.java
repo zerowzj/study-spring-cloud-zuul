@@ -17,8 +17,6 @@ public class AuthFilter extends ZuulFilter {
 
     /**
      * 是否启用该过滤器
-     *
-     * @return
      */
     @Override
     public boolean shouldFilter() {
