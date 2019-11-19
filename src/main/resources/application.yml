@@ -34,6 +34,21 @@ ribbon:
 #hystrix:
 
 ####################
+# OAuth2
+####################
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      access-token-uri:
+      user-authorization-uri:
+      client-id:
+      client-secret:
+    resource:
+      jwt:
+        key-value: spring
+####################
 # Route
 ####################
 zuul:
