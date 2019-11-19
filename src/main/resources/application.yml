@@ -25,7 +25,8 @@ ribbon:
   #连接超时
   ConnectTimeout: 6000
   #转发超时
-  ReadTimeout:
+  ReadTimeout: 6000
+
 ####################
 # Hystrix
 ####################
