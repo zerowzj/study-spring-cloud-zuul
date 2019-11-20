@@ -33,16 +33,16 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- =============== -->
-        <!-- Zuul            -->
-        <!-- =============== -->
+        <!-- ==================== -->
+        <!-- （★）Zuul           -->
+        <!-- ==================== -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zuul</artifactId>
             <version>1.4.7.RELEASE</version>
         </dependency>
         <!-- ==================== -->
-        <!-- Eureka客户端         -->
+        <!-- （★）Eureka客户端    -->
         <!-- ==================== -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -10,7 +10,7 @@ spring:
     name: study-springcloud-zuul
 
 ####################
-# Eureka
+#（★）Eureka
 ####################
 eureka:
   instance:
@@ -20,7 +20,7 @@ eureka:
     service-url:
       defaultZone: http://114.67.102.8:7010/eureka/
 ####################
-# Ribbon
+#（★）Ribbon
 ####################
 ribbon:
   #连接超时
@@ -34,7 +34,7 @@ ribbon:
   # 同一实例的重试次数
   MaxAutoRetries: 1
 ####################
-# Hystrix
+#（★）Hystrix
 ####################
 hystrix:
   command:
@@ -44,7 +44,7 @@ hystrix:
           thread:
             timeoutInMillisecond: 6000 # 熔断超时时长：6000ms
 ####################
-# OAuth2
+#（★）OAuth2
 ####################
 security:
   #  basic:
