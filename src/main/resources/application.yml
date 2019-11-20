@@ -8,6 +8,7 @@ logging:
 spring:
   application:
     name: study-springcloud-zuul
+
 ####################
 # Eureka
 ####################
@@ -18,7 +19,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://114.67.102.8:7010/eureka/
-
 ####################
 # Ribbon
 ####################
@@ -27,38 +27,15 @@ ribbon:
   ConnectTimeout: 6000
   #转发超时
   ReadTimeout: 6000
-
-####################
-# Hystrix
-####################
-#hystrix:
-
-####################
-# OAuth2
-####################
-security:
-  basic:
-    enabled: false
-  oauth2:
-    client:
-      access-token-uri:
-      user-authorization-uri:
-      client-id:
-      client-secret:
-    resource:
-      jwt:
-        key-value: spring
-####################
-# Route
-####################
-  ReadTimeout:
   # 是否对所有操作重试
   OkToRetryOnAllOperations: true
   # 同一服务不同实例的重试次数
   MaxAutoRetriesNextServer: 2
   # 同一实例的重试次数
   MaxAutoRetries: 1
-### Hystrix支持 ###
+####################
+# Hystrix
+####################
 hystrix:
   command:
     default:
@@ -66,10 +43,27 @@ hystrix:
         isolation:
           thread:
             timeoutInMillisecond: 6000 # 熔断超时时长：6000ms
-### 服务转发配置 ###
+####################
+# OAuth2
+####################
+security:
+  #  basic:
+  #    enabled: false
+  oauth2:
+    client:
+      access-token-uri: http://114.67.102.8:7010
+      user-authorization-uri: http://114.67.102.8:7010
+      client-id: client_1
+      client-secret: secret_1
+    resource:
+      jwt:
+        key-value: spring123
+####################
+# Route
+####################
 zuul:
-  ribbon:
-    eager-load: true
+  #  ribbon:
+  #    eager-load: true
   #路由前缀
   prefix: /api
   #忽略表达式
