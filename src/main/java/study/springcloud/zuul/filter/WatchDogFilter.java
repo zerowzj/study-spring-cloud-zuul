@@ -1,4 +1,4 @@
-package study.springcloud.zuul.support.filter;
+package study.springcloud.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.exception.ZuulException;
