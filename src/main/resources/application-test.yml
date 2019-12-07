@@ -1,5 +1,5 @@
 ####################
-# Eureka
+# Eureka Client
 ####################
 eureka:
   instance:
@@ -27,8 +27,8 @@ ribbon:
 # OAuth2
 ####################
 security:
-  basic:
-    enabled: false
+#  basic:
+#    enabled: false
   oauth2:
     client:
       access-token-uri:
