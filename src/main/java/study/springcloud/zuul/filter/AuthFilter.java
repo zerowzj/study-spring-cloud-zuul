@@ -1,4 +1,4 @@
-package study.springcloud.zuul.support.filter;
+package study.springcloud.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -17,8 +17,6 @@ public class AuthFilter extends ZuulFilter {
 
     /**
      * 是否启用该过滤器
-     *
-     * @return
      */
     @Override
     public boolean shouldFilter() {
