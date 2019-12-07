@@ -1,15 +1,6 @@
-#
-server:
-  port: 7020
-#
-logging:
-  config: classpath:logback.xml
-#
-spring:
-  application:
-    name: study-springcloud-zuul
-
-### 注册中心配置 ###
+####################
+# Eureka
+####################
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
@@ -17,16 +8,42 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://114.67.102.8:7010/eureka/
-### Ribbon支持 ###
+
+####################
+# Ribbon
+####################
 ribbon:
   #连接超时
   ConnectTimeout: 6000
   #转发超时
-  ReadTimeout:
-### Hystrix支持 ###
-hystrix:
-### 服务转发配置 ###
+  ReadTimeout: 6000
+
+####################
+# Hystrix
+####################
+#hystrix:
+
+####################
+# OAuth2
+####################
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      access-token-uri:
+      user-authorization-uri:
+      client-id:
+      client-secret:
+    resource:
+      jwt:
+        key-value: spring
+####################
+# Route
+####################
 zuul:
+  ribbon:
+    eager-load: true
   #路由前缀
   prefix: /api
   #忽略表达式
