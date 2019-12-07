@@ -77,6 +77,7 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
+                <filtering>true</filtering>
                 <includes>
                     <include>application.yml</include>
                     <include>application-${env}.yml</include>
