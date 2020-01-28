@@ -1,6 +1,8 @@
 #
 server:
   port: 7020
+  tomcat:
+    max-threads: 300
 #
 logging:
   config: classpath:logback.xml
@@ -8,17 +10,21 @@ logging:
 spring:
   application:
     name: study-springcloud-zuul
-
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 100Mb
+      max-request-size: 100Mb
 ####################
 #（★）Eureka
 ####################
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-  client:
-    fetch-registry: true
-    service-url:
-      defaultZone: http://114.67.102.8:7010/eureka/
+#eureka:
+#  instance:
+#    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+#  client:
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://114.67.102.8:7010/eureka/
 ####################
 #（★）Ribbon
 ####################
@@ -27,12 +33,49 @@ ribbon:
   ConnectTimeout: 6000
   #转发超时
   ReadTimeout: 6000
-  # 是否对所有操作重试
+  #是否对所有操作重试
   OkToRetryOnAllOperations: true
-  # 同一服务不同实例的重试次数
+  #同一服务不同实例的重试次数
   MaxAutoRetriesNextServer: 2
-  # 同一实例的重试次数
+  #同一实例的重试次数
   MaxAutoRetries: 1
+####################
+#（★）Route
+####################
+zuul:
+  #（▲）
+  ribbon-isolation-strategy: semaphore
+  semaphore:
+    max-semaphores: 100
+  #（▲）
+  host:
+    max-total-connections: 200
+    max-per-route-connections: 20
+  #（▲）解饿加载
+  ribbon:
+    eager-load: true
+  #（▲）路由前缀
+  prefix: /api
+  #（▲）忽略表达式
+  ignored-services: aa
+  ignored-headers: Cookie
+  ignored-patterns: /**/hello/**
+  #（▲）全局过滤
+  sensitiveHeaders: Cookie,Set-Cookie,Authorization
+  #（▲）全局重试
+  retryable: true
+  #路由
+  routes:
+    study-springcloud-provider1:
+      path:
+      url:
+    study-springcloud-provider2:
+      path: /**
+      service-id: study-springcloud-provider
+      #路由过滤
+      sensitive-headers: "*"
+      #路由重试
+      retryable: true
 ####################
 #（★）Hystrix
 ####################
@@ -58,30 +101,3 @@ security:
     resource:
       jwt:
         key-value: spring123
-####################
-# Route
-####################
-zuul:
-  #  ribbon:
-  #    eager-load: true
-  #路由前缀
-  prefix: /api
-  #忽略表达式
-  ignored-services: aa
-  ignored-headers: Cookie
-  ignored-patterns: /**/hello/**
-  #全局过滤
-  sensitiveHeaders: Cookie,Set-Cookie,Authorization
-  #全局重试
-  retryable: true
-  routes:
-    study-springcloud-provider1:
-      path:
-      url:
-    study-springcloud-provider2:
-      path: /**
-      service-id: study-springcloud-provider
-      #路由过滤
-      sensitive-headers: "*"
-      #路由重试
-      retryable: true
