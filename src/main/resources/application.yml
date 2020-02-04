@@ -50,6 +50,10 @@ hystrix:
         isolation:
           thread:
             timeoutInMillisecond: 6000 # 熔断超时时长：6000ms
+      circuitBreaker:
+        requestVolumeThreshold: 1231
+        sleepWindowInMilliseconds: 123
+        errorThresholdPercentage: 79%
 ##############################
 #（★）Route
 ##############################
