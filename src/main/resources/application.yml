@@ -54,10 +54,12 @@ hystrix:
           thread:
             timeoutInMillisecond: 6000 #命令执行超时时间，默认1000ms
           semaphore:
-            maxConcurrentRequests:
+            maxConcurrentRequests: 100
       #（▲）熔断
       circuitBreaker:
+        enabled: true
         forceOpen: false
+        closedOpen: true
         requestVolumeThreshold: 20
         sleepWindowInMilliseconds: 100
         errorThresholdPercentage: 50
