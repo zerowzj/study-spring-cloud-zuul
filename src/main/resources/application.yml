@@ -30,16 +30,16 @@ spring:
 #（★）Ribbon
 ##############################
 ribbon:
-  #连接超时
+  #设置路由转发请求时，创建请求连接的超时时间
   ConnectTimeout: 6000
   #转发超时
   ReadTimeout: 6000
   #是否对所有操作重试
   OkToRetryOnAllOperations: true
-  #同一服务不同实例的重试次数
-  MaxAutoRetriesNextServer: 2
   #同一实例的重试次数
   MaxAutoRetries: 1
+  #同一服务不同实例的重试次数
+  MaxAutoRetriesNextServer: 2
 ##############################
 #（★）Hystrix
 ##############################
