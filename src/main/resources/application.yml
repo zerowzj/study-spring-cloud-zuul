@@ -46,14 +46,27 @@ ribbon:
 hystrix:
   command:
     default:
+      #
       execution:
+        #隔离策略，默认是Thread, 可选Thread｜Semaphore
         isolation:
+          strategy: Thread
           thread:
-            timeoutInMillisecond: 6000 # 熔断超时时长：6000ms
+            timeoutInMillisecond: 6000 #命令执行超时时间，默认1000ms
+          semaphore:
+            maxConcurrentRequests:
+      #熔断
       circuitBreaker:
+        forceOpen: false
         requestVolumeThreshold: 1231
         sleepWindowInMilliseconds: 123
         errorThresholdPercentage: 79%
+      #回退，降级
+      fallback:
+        enabled: true
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 50
 ##############################
 #（★）Route
 ##############################
