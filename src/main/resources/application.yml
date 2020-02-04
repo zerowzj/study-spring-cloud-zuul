@@ -25,9 +25,9 @@ spring:
 #    fetch-registry: true
 #    service-url:
 #      defaultZone: http://114.67.102.8:7010/eureka/
-####################
+##############################
 #（★）Ribbon
-####################
+##############################
 ribbon:
   #连接超时
   ConnectTimeout: 6000
@@ -39,15 +39,25 @@ ribbon:
   MaxAutoRetriesNextServer: 2
   #同一实例的重试次数
   MaxAutoRetries: 1
-####################
+##############################
+#（★）Hystrix
+##############################
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 6000 # 熔断超时时长：6000ms
+##############################
 #（★）Route
-####################
+##############################
 zuul:
-  #（▲）
+  #（▲）隔离策略
   ribbon-isolation-strategy: semaphore
   semaphore:
     max-semaphores: 100
-  #（▲）
+  #（▲）主机配置
   host:
     max-total-connections: 200
     max-per-route-connections: 20
@@ -64,7 +74,7 @@ zuul:
   sensitiveHeaders: Cookie,Set-Cookie,Authorization
   #（▲）全局重试
   retryable: true
-  #路由
+  #（▲）路由
   routes:
     study-springcloud-provider1:
       path:
@@ -76,16 +86,6 @@ zuul:
       sensitive-headers: "*"
       #路由重试
       retryable: true
-####################
-#（★）Hystrix
-####################
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMillisecond: 6000 # 熔断超时时长：6000ms
 ####################
 #（★）OAuth2
 ####################
