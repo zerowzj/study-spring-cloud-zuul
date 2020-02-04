@@ -3,6 +3,7 @@ server:
   port: 7020
   tomcat:
     max-threads: 300
+    max-connections: 1000
 #
 logging:
   config: classpath:logback.xml
@@ -10,14 +11,14 @@ logging:
 spring:
   application:
     name: study-springcloud-zuul
-  http:
+  servlet:
     multipart:
       enabled: true
       max-file-size: 100Mb
       max-request-size: 100Mb
-####################
+##############################
 #（★）Eureka
-####################
+##############################
 #eureka:
 #  instance:
 #    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
@@ -61,6 +62,7 @@ zuul:
   host:
     max-total-connections: 200
     max-per-route-connections: 20
+    m
   #（▲）解饿加载
   ribbon:
     eager-load: true
@@ -76,10 +78,7 @@ zuul:
   retryable: true
   #（▲）路由
   routes:
-    study-springcloud-provider1:
-      path:
-      url:
-    study-springcloud-provider2:
+    study-springcloud-provider:
       path: /**
       service-id: study-springcloud-provider
       #路由过滤
