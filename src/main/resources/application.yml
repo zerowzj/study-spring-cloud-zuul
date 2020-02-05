@@ -1,6 +1,6 @@
 #
 server:
-  port: 7020
+  port: 7200
   tomcat:
     max-threads: 300
     max-connections: 1000
@@ -19,13 +19,13 @@ spring:
 ##############################
 #（★）Eureka
 ##############################
-#eureka:
-#  instance:
-#    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-#  client:
-#    fetch-registry: true
-#    service-url:
-#      defaultZone: http://114.67.102.8:7010/eureka/
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://114.67.102.8:7010/eureka/
 ##############################
 #（★）Ribbon
 ##############################
@@ -107,7 +107,9 @@ zuul:
   sensitiveHeaders: Cookie,Set-Cookie,Authorization
   #（▲）全局重试
   retryable: true
+  ####################
   #（▲）路由
+  ####################
   routes:
     study-springcloud-provider:
       path: /**
