@@ -14,8 +14,8 @@ spring:
   servlet:
     multipart:
       enabled: true
-      max-file-size: 100Mb
-      max-request-size: 100Mb
+      max-file-size: 100
+      max-request-size: 100
 ##############################
 #（★）Eureka
 ##############################
@@ -25,7 +25,7 @@ eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://114.67.102.8:7010/eureka/
+      defaultZone: http://114.67.102.8:7100/eureka/
 ##############################
 #（★）Ribbon
 ##############################
@@ -93,7 +93,6 @@ zuul:
   host:
     max-total-connections: 200
     max-per-route-connections: 20
-    m
   #（▲）解饿加载
   ribbon:
     eager-load: true
