@@ -25,7 +25,7 @@ eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://114.67.102.8:7100/eureka/
+      defaultZone: @eureka.client.defaultZone@
 ##############################
 #（★）Ribbon
 ##############################
