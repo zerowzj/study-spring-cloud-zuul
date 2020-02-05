@@ -6,7 +6,6 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @EnableHystrixDashboard
 @EnableZuulProxy
-//@ServletComponentScan(basePackages = "study.springcloud.zuul")
 @SpringBootApplication(scanBasePackages = "study.springcloud.zuul")
 public class SpringBootCfg {
 

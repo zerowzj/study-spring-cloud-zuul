@@ -2,18 +2,16 @@ package study.springcloud.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Slf4j
 @Component
 public class AuthFilter extends ZuulFilter {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthFilter.class);
 
     /**
      * 是否启用该过滤器
@@ -23,6 +21,8 @@ public class AuthFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletResponse response = ctx.getResponse();
         HttpServletRequest request = ctx.getRequest();
+        String uri = request.getRequestURI();
+        log.info("{}", uri);
         return true;
     }
 
