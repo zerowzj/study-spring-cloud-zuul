@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 public class WatchDogFilter extends ZuulFilter {
 
     @Override
+    public String filterType() {
+        return FilterConstants.PRE_TYPE;
+    }
+
+    @Override
     public boolean shouldFilter() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
@@ -23,16 +28,9 @@ public class WatchDogFilter extends ZuulFilter {
     }
 
     @Override
-    public String filterType() {
-        return FilterConstants.PRE_TYPE;
-    }
-
-    @Override
     public int filterOrder() {
         return -1;
     }
-
-
 
     @Override
     public Object run() throws ZuulException {

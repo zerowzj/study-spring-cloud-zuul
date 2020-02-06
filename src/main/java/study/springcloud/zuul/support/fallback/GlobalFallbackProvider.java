@@ -21,8 +21,7 @@ public class GlobalFallbackProvider implements FallbackProvider {
 
     @Override
     public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
-        cause.printStackTrace();
-        log.info("fsadfasdfasd");
+        log.info("", cause);
         return new MyClientHttpResponse(getRoute());
     }
 }

@@ -11,6 +11,8 @@ logging:
 spring:
   application:
     name: study-springcloud-zuul
+  main:
+    web-application-type: servlet
   servlet:
     multipart:
       enabled: true
@@ -45,7 +47,7 @@ ribbon:
   #出错或超时，Server重试的次数（除去首次）
   MaxAutoRetries: 1
   #在其他Server上重试的次数（除去首次）
-  MaxAutoRetriesNextServer: 2
+  MaxAutoRetriesNextServer: 0
 ##############################
 #（★）Hystrix
 ##############################
@@ -62,7 +64,7 @@ hystrix:
           strategy: Thread
           thread:
             #命令执行超时时间，默认1000ms，时间应该大于ribbon全部重试时间的总和
-            timeoutInMilliseconds: 3000
+            timeoutInMilliseconds: 300000
             #发生超时是是否中断，默认true
             interruptOnTimeout: true
           semaphore:
@@ -101,10 +103,10 @@ zuul:
     socket-timeout-millis: 5000
   #    max-total-connections: 200
   #    max-per-route-connections: 20
-  #（▲）解饿加载
+  #（▲）饥饿加载
   ribbon:
     eager-load: true
-  #（▲）路由前缀
+  #路由前缀
   prefix: /api
   #忽略表达式
   ignored-services: aa

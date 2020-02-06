@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class AuthFilter extends ZuulFilter {
 
+    @Override
+    public String filterType() {
+        return FilterConstants.PRE_TYPE;
+    }
+
     /**
      * 是否启用该过滤器
      */
@@ -27,21 +32,16 @@ public class AuthFilter extends ZuulFilter {
     }
 
     @Override
+    public int filterOrder() {
+        return 0;
+    }
+
+    @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
 //        ctx.setSendZuulResponse(false);
 //        ctx.setResponseBody("sadfasdf");
 //        ctx.getResponse().setContentType("application/json; charset=utf-8");
         return null;
-    }
-
-    @Override
-    public String filterType() {
-        return FilterConstants.PRE_TYPE;
-    }
-
-    @Override
-    public int filterOrder() {
-        return 0;
     }
 }
