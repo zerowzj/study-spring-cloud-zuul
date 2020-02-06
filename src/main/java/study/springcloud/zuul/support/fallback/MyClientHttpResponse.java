@@ -43,9 +43,7 @@ public class MyClientHttpResponse implements ClientHttpResponse {
 
     /**
      * 当 springms-provider-user 微服务出现宕机后，客户端再请求时候就会返回 fallback 等字样的字符串提示；
-     * <p>
      * 但对于复杂一点的微服务，我们这里就得好好琢磨该怎么友好提示给用户了；
-     * <p>
      * 如果请求用户服务失败，返回什么信息给消费者客户端
      */
     @Override

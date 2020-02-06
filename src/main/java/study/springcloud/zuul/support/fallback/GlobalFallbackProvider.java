@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class MyFallbackProvider implements FallbackProvider {
+public class GlobalFallbackProvider implements FallbackProvider {
 
     /**
      * 返回值表示需要针对此微服务做回退处理
