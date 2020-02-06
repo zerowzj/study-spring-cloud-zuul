@@ -75,7 +75,7 @@ hystrix:
         enabled: true
         #强制打开熔断器，如果打开这个开关，那么拒绝所有请求，默认false
         forceOpen: false
-        #强制关闭熔断器 如果这个开关打开，circuit将一直关闭且忽略
+        #  如果这个开关打开，circuit将一直关闭且忽略
         closedOpen: true
         #错误比率阀值，如果错误率>=该值，circuit会被打开，并短路所有请求触发fallback。默认50
         errorThresholdPercentage: 50
@@ -127,7 +127,12 @@ zuul:
       sensitive-headers: "*"
       #路由重试
       retryable: true
-#      url: fsadf
+      ribbon:
+        ConnectTimeout: 3000
+        ReadTimeout: 3000
+        OkToRetryOnAllOperations: true
+        MaxAutoRetries: 1
+        MaxAutoRetriesNextServer: 1
 ####################
 #（★）OAuth2
 ####################
