@@ -23,9 +23,9 @@ spring:
       #负载局衡器重试开关
       retry:
         enabled: true
-##############################
+#==============================
 #（★）Eureka
-##############################
+#==============================
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -33,9 +33,45 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: @eureka.client.defaultZone@
-##############################
+#==============================
+#（★）Route
+#==============================
+zuul:
+  #（▲）路由
+  routes:
+    study-springcloud-provider:
+      path: /**
+      service-id: study-springcloud-provider
+      #路由过滤
+      sensitive-headers: "*"
+  #（▲）隔离策略，THREAD和SEMAPHORE;
+  ribbon-isolation-strategy: SEMAPHORE
+  semaphore:
+    max-semaphores: 100
+  thread-pool:
+    thread-pool-key-prefix: tt
+  #（▲）网关重试开关
+  retryable: true
+  #（▲）主机配置
+  host:
+    connect-timeout-millis: 5000
+    socket-timeout-millis: 5000
+  #    max-total-connections: 200
+  #    max-per-route-connections: 20
+  #（▲）饥饿加载
+  ribbon:
+    eager-load: true
+  #路由前缀
+  prefix: /api
+  #忽略表达式
+  ignored-services: aa
+  ignored-headers: Cookie
+  ignored-patterns: /**/hello/**
+  #全局过滤
+  sensitiveHeaders: Cookie,Set-Cookie,Authorization
+#==============================
 #（★）Ribbon
-##############################
+#==============================
 ribbon:
   eureka:
     enabled: true
@@ -48,9 +84,16 @@ ribbon:
   MaxAutoRetries: 1
   #在其他Server上重试的次数（除去首次）
   MaxAutoRetriesNextServer: 1
-##############################
+study-springcloud-provider:
+  ribbon:
+    ConnectTimeout: 3000
+    ReadTimeout: 3000
+    OkToRetryOnAllOperations: true
+    MaxAutoRetries: 0
+    MaxAutoRetriesNextServer: 0
+#******************************
 #（★）Hystrix
-##############################
+#******************************
 hystrix:
   command:
     default:
@@ -89,55 +132,9 @@ hystrix:
         isolation:
           semaphore:
             maxConcurrentRequests: 50
-##############################
-#（★）Route
-##############################
-zuul:
-  ####################
-  #（▲）路由
-  ####################
-  routes:
-    study-springcloud-provider:
-      path: /**
-      service-id: study-springcloud-provider
-      #路由过滤
-      sensitive-headers: "*"
-      #路由重试
-      retryable: true
-      ribbon:
-        ConnectTimeout: 3000
-        ReadTimeout: 3000
-        OkToRetryOnAllOperations: true
-        MaxAutoRetries: 1
-        MaxAutoRetriesNextServer: 1
-  #（▲）隔离策略，THREAD和SEMAPHORE;
-  ribbon-isolation-strategy: SEMAPHORE
-  semaphore:
-    max-semaphores: 100
-  thread-pool:
-    thread-pool-key-prefix: tt
-  #（▲）网关重试开关
-  retryable: true
-  #（▲）主机配置
-  host:
-    connect-timeout-millis: 5000
-    socket-timeout-millis: 5000
-  #    max-total-connections: 200
-  #    max-per-route-connections: 20
-  #（▲）饥饿加载
-  ribbon:
-    eager-load: true
-  #路由前缀
-  prefix: /api
-  #忽略表达式
-  ignored-services: aa
-  ignored-headers: Cookie
-  ignored-patterns: /**/hello/**
-  #全局过滤
-  sensitiveHeaders: Cookie,Set-Cookie,Authorization
-####################
+#==============================
 #（★）OAuth2
-####################
+#==============================
 #security:
 #  #  basic:
 #  #    enabled: false
