@@ -49,8 +49,8 @@ zuul:
   semaphore:
     max-semaphores: 100
   thread-pool:
-    useSeparateThreadPools: false
-    thread-pool-key-prefix: TTT-
+    use-separate-thread-pools: false
+    thread-pool-key-prefix: PREFIX
   #（▲）网关重试开关
   retryable: true
   #（▲）主机配置
