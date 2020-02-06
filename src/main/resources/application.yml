@@ -2,7 +2,7 @@
 server:
   port: 7200
   tomcat:
-    max-threads: 300
+    max-threads: 200
     max-connections: 1000
 #
 logging:
@@ -16,6 +16,11 @@ spring:
       enabled: true
       max-file-size: 100
       max-request-size: 100
+  cloud:
+    loadbalancer:
+      #负载局衡器重试开关
+      retry:
+        enabled: true
 ##############################
 #（★）Eureka
 ##############################
@@ -30,15 +35,16 @@ eureka:
 #（★）Ribbon
 ##############################
 ribbon:
-  #设置路由转发请求时，创建请求连接的超时时间
-  ConnectTimeout: 6000
-  #转发超时
-  ReadTimeout: 6000
-  #是否对所有操作重试
+  eureka:
+    enabled: true
+  #（▲）设置路由转发请求时，创建请求连接的超时时间
+  ConnectTimeout: 5000
+  ReadTimeout: 5000
+  #所有操作都支持重试的开关
   OkToRetryOnAllOperations: true
-  #同一实例的重试次数
+  #出错或超时，Server重试的次数（除去首次）
   MaxAutoRetries: 1
-  #同一服务不同实例的重试次数
+  #在其他Server上重试的次数（除去首次）
   MaxAutoRetriesNextServer: 2
 ##############################
 #（★）Hystrix
@@ -55,8 +61,8 @@ hystrix:
         isolation:
           strategy: Thread
           thread:
-            #命令执行超时时间，默认1000ms
-            timeoutInMillisecond: 6000
+            #命令执行超时时间，默认1000ms，时间应该大于ribbon全部重试时间的总和
+            timeoutInMilliseconds: 3000
             #发生超时是是否中断，默认true
             interruptOnTimeout: true
           semaphore:
@@ -91,20 +97,22 @@ zuul:
     max-semaphores: 100
   #（▲）主机配置
   host:
-    max-total-connections: 200
-    max-per-route-connections: 20
+    connect-timeout-millis: 5000
+    socket-timeout-millis: 5000
+  #    max-total-connections: 200
+  #    max-per-route-connections: 20
   #（▲）解饿加载
   ribbon:
     eager-load: true
   #（▲）路由前缀
   prefix: /api
-  #（▲）忽略表达式
+  #忽略表达式
   ignored-services: aa
   ignored-headers: Cookie
   ignored-patterns: /**/hello/**
-  #（▲）全局过滤
+  #全局过滤
   sensitiveHeaders: Cookie,Set-Cookie,Authorization
-  #（▲）全局重试
+  #网关重试开关
   retryable: true
   ####################
   #（▲）路由
@@ -117,18 +125,19 @@ zuul:
       sensitive-headers: "*"
       #路由重试
       retryable: true
+#      url: fsadf
 ####################
 #（★）OAuth2
 ####################
-security:
-  #  basic:
-  #    enabled: false
-  oauth2:
-    client:
-      access-token-uri: http://114.67.102.8:7010
-      user-authorization-uri: http://114.67.102.8:7010
-      client-id: client_1
-      client-secret: secret_1
-    resource:
-      jwt:
-        key-value: spring123
+#security:
+#  #  basic:
+#  #    enabled: false
+#  oauth2:
+#    client:
+#      access-token-uri: http://114.67.102.8:7010
+#      user-authorization-uri: http://114.67.102.8:7010
+#      client-id: client_1
+#      client-secret: secret_1
+#    resource:
+#      jwt:
+#        key-value: spring123
