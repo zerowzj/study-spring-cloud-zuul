@@ -49,15 +49,16 @@ zuul:
   semaphore:
     max-semaphores: 100
   thread-pool:
-    thread-pool-key-prefix: tt
+    useSeparateThreadPools: false
+    thread-pool-key-prefix: TTT-
   #（▲）网关重试开关
   retryable: true
   #（▲）主机配置
   host:
-    connect-timeout-millis: 5000
-    socket-timeout-millis: 5000
-  #    max-total-connections: 200
-  #    max-per-route-connections: 20
+    connect-timeout-millis: 2000
+    socket-timeout-millis: 10000
+    max-total-connections: 200
+    max-per-route-connections: 20
   #（▲）饥饿加载
   ribbon:
     eager-load: true
