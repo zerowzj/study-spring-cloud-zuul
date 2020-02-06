@@ -23,9 +23,9 @@ spring:
       #负载局衡器重试开关
       retry:
         enabled: true
-#==============================
+#====================
 #（★）Eureka
-#==============================
+#====================
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -33,9 +33,9 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: @eureka.client.defaultZone@
-#==============================
+#====================
 #（★）Route
-#==============================
+#====================
 zuul:
   #（▲）路由
   routes:
@@ -70,9 +70,9 @@ zuul:
   ignored-patterns: /**/hello/**
   #全局过滤
   sensitiveHeaders: Cookie,Set-Cookie,Authorization
-#==============================
+#====================
 #（★）Ribbon
-#==============================
+#====================
 ribbon:
   eureka:
     enabled: true
@@ -92,9 +92,9 @@ study-springcloud-provider:
     OkToRetryOnAllOperations: true
     MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 0
-#******************************
+#********************
 #（★）Hystrix
-#******************************
+#********************
 hystrix:
   command:
     default:
