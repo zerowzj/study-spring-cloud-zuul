@@ -93,8 +93,8 @@ hystrix:
 #（★）Route
 ##############################
 zuul:
-  #（▲）隔离策略
-  ribbon-isolation-strategy: semaphore
+  #（▲）隔离策略，THREAD和SEMAPHORE;
+  ribbon-isolation-strategy: SEMAPHORE
   semaphore:
     max-semaphores: 100
   #（▲）主机配置
