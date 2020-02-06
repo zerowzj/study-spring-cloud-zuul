@@ -39,7 +39,7 @@ eureka:
 ribbon:
   eureka:
     enabled: true
-  #（▲）设置路由转发请求时，创建请求连接的超时时间
+  #连接和读取超时时间
   ConnectTimeout: 5000
   ReadTimeout: 5000
   #所有操作都支持重试的开关
@@ -93,29 +93,6 @@ hystrix:
 #（★）Route
 ##############################
 zuul:
-  #（▲）隔离策略，THREAD和SEMAPHORE;
-  ribbon-isolation-strategy: SEMAPHORE
-  semaphore:
-    max-semaphores: 100
-  #（▲）主机配置
-  host:
-    connect-timeout-millis: 5000
-    socket-timeout-millis: 5000
-  #    max-total-connections: 200
-  #    max-per-route-connections: 20
-  #（▲）饥饿加载
-  ribbon:
-    eager-load: true
-  #路由前缀
-  prefix: /api
-  #忽略表达式
-  ignored-services: aa
-  ignored-headers: Cookie
-  ignored-patterns: /**/hello/**
-  #全局过滤
-  sensitiveHeaders: Cookie,Set-Cookie,Authorization
-  #网关重试开关
-  retryable: true
   ####################
   #（▲）路由
   ####################
@@ -133,6 +110,31 @@ zuul:
         OkToRetryOnAllOperations: true
         MaxAutoRetries: 1
         MaxAutoRetriesNextServer: 1
+  #（▲）隔离策略，THREAD和SEMAPHORE;
+  ribbon-isolation-strategy: SEMAPHORE
+  semaphore:
+    max-semaphores: 100
+  thread-pool:
+    thread-pool-key-prefix: tt
+  #（▲）网关重试开关
+  retryable: true
+  #（▲）主机配置
+  host:
+    connect-timeout-millis: 5000
+    socket-timeout-millis: 5000
+  #    max-total-connections: 200
+  #    max-per-route-connections: 20
+  #（▲）饥饿加载
+  ribbon:
+    eager-load: true
+  #路由前缀
+  prefix: /api
+  #忽略表达式
+  ignored-services: aa
+  ignored-headers: Cookie
+  ignored-patterns: /**/hello/**
+  #全局过滤
+  sensitiveHeaders: Cookie,Set-Cookie,Authorization
 ####################
 #（★）OAuth2
 ####################
