@@ -3,7 +3,7 @@ server:
   port: 7200
   tomcat:
     max-threads: 200
-    max-connections: 1000
+    max-connections: 10000
 #
 logging:
   config: classpath:logback.xml

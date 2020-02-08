@@ -18,9 +18,6 @@ public class PreZFilter extends ZuulFilter {
         return FilterConstants.PRE_TYPE;
     }
 
-    /**
-     * 是否启用该过滤器
-     */
     @Override
     public boolean shouldFilter() {
         RequestContext ctx = RequestContext.getCurrentContext();

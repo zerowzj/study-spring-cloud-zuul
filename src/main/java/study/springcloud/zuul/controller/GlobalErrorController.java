@@ -22,10 +22,8 @@ public class GlobalErrorController implements ErrorController {
         log.info("uri={}", uri);
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
         log.info("{}", statusCode);
-
         Exception exception = (Exception) request.getAttribute("javax.servlet.error.exception");
         String message = (String) request.getAttribute("javax.servlet.error.message");
-
         return "faaaaaaaaa";
     }
 }
