@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @Component
-public class AuthZFilter extends ZuulFilter {
+public class PreZFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
@@ -38,6 +38,7 @@ public class AuthZFilter extends ZuulFilter {
 
     @Override
     public Object run() {
+        log.info("pre...................");
         RequestContext ctx = RequestContext.getCurrentContext();
 //        ctx.setSendZuulResponse(false);
 //        ctx.setResponseBody("sadfasdf");
