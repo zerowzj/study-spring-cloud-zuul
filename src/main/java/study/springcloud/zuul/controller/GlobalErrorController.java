@@ -26,10 +26,9 @@ public class GlobalErrorController implements ErrorController {
     public String error(HttpServletRequest request) {
         String uri = request.getRequestURI();
         log.info("uri={}", uri);
-        Integer statusCode = (Integer) request.getAttribute(KEY_STATUS_CODE);
-        log.info("{}", statusCode);
+        Integer code = (Integer) request.getAttribute(KEY_STATUS_CODE);
         Exception ex = (Exception) request.getAttribute(KEY_EXCEPTION);
         String msg = (String) request.getAttribute(KEY_MESSAGE);
-        return "faaaaaaaaa";
+        return "error";
     }
 }
