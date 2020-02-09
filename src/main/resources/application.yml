@@ -1,9 +1,14 @@
 #
 server:
   port: 7200
+  #====================
+  # Tomcat
+  #====================
   tomcat:
     max-threads: 3
+    min-spare-threads: 10
     max-connections: 10000
+    accept-count: 100
   undertow:
     io-threads: 100
     worker-threads: 100
