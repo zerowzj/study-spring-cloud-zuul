@@ -15,13 +15,14 @@ public class GlobalFallbackProvider implements FallbackProvider {
      */
     @Override
     public String getRoute() {
-        //api服务id，如果需要所有调用都支持回退，则return "*"或return null
+        //服务id，如果需要所有调用都支持回退，则return "*"或return null
         return "*";
     }
 
     @Override
     public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
-        log.info("", cause);
-        return new MyClientHttpResponse(getRoute());
+        log.info("route={}", route);
+        log.error("", cause);
+        return new CustomClientHttpResponse(getRoute());
     }
 }

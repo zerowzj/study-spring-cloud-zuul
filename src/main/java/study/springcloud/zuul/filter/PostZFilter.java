@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 在routing和error过滤器之后被调用
+ */
 @Slf4j
 @Component
 public class PostZFilter extends ZuulFilter {
@@ -20,10 +23,6 @@ public class PostZFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest request = ctx.getRequest();
-        String uri = request.getRequestURI();
-        log.info("{}", uri);
         return true;
     }
 
@@ -34,7 +33,7 @@ public class PostZFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        log.info("post...................");
+        log.info("======> post filter");
         return null;
     }
 }

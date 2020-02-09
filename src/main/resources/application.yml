@@ -5,8 +5,8 @@ server:
     max-threads: 200
     max-connections: 10000
 #
-logging:
-  config: classpath:logback.xml
+#logging:
+#  config: classpath:logback.xml
 #
 spring:
   application:

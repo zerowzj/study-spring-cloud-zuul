@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 在路由请求时候被调用
+ */
 @Slf4j
 @Component
 public class RouteZFilter extends ZuulFilter {
@@ -20,11 +23,6 @@ public class RouteZFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletResponse response = ctx.getResponse();
-        HttpServletRequest request = ctx.getRequest();
-        String uri = request.getRequestURI();
-        log.info("{}", uri);
         return true;
     }
 
@@ -35,11 +33,7 @@ public class RouteZFilter extends ZuulFilter {
 
     @Override
     public Object run() {
-        log.info("route...................");
-        RequestContext ctx = RequestContext.getCurrentContext();
-//        ctx.setSendZuulResponse(false);
-//        ctx.setResponseBody("sadfasdf");
-//        ctx.getResponse().setContentType("application/json; charset=utf-8");
+        log.info("======> route filter");
         return null;
     }
 }

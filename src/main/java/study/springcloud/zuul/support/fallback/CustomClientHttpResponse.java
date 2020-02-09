@@ -9,11 +9,11 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class MyClientHttpResponse implements ClientHttpResponse {
+public class CustomClientHttpResponse implements ClientHttpResponse {
 
     private String route;
 
-    public MyClientHttpResponse(String route) {
+    public CustomClientHttpResponse(String route) {
         this.route = route;
     }
 
