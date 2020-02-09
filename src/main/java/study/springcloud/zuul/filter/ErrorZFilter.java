@@ -22,13 +22,13 @@ public class ErrorZFilter extends ZuulFilter {
     }
 
     @Override
-    public boolean shouldFilter() {
-        return true;
+    public int filterOrder() {
+        return 0;
     }
 
     @Override
-    public int filterOrder() {
-        return 0;
+    public boolean shouldFilter() {
+        return true;
     }
 
     @Override
