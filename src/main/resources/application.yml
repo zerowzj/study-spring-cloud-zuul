@@ -1,21 +1,11 @@
 #
 server:
   port: 7200
-  #====================
-  # Tomcat
-  #====================
   tomcat:
-    max-threads: 3
-    min-spare-threads: 3
-    accept-count: 10
+    max-threads: 300
+    min-spare-threads: 100
     max-connections: 10000
-  #====================
-  # Undertow
-  #====================
-  undertow:
-    io-threads: 100
-    worker-threads: 100
-#
+    accept-count: 100
 logging:
   config: classpath:logback.xml
 #
