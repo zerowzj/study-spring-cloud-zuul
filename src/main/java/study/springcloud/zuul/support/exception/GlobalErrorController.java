@@ -1,4 +1,4 @@
-package study.springcloud.zuul.controller;
+package study.springcloud.zuul.support.exception;
 
 import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
