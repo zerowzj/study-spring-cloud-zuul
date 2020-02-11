@@ -1,11 +1,7 @@
 #
 server:
   port: 7200
-  tomcat:
-    max-threads: 300
-    min-spare-threads: 100
-    max-connections: 10000
-    accept-count: 100
+#
 logging:
   config: classpath:logback.xml
 #
@@ -14,11 +10,7 @@ spring:
     name: study-springcloud-zuul
   main:
     web-application-type: servlet
-  servlet:
-    multipart:
-      enabled: true
-      max-file-size: 100
-      max-request-size: 100
+  #（▲）
   cloud:
     loadbalancer:
       #负载局衡器重试开关

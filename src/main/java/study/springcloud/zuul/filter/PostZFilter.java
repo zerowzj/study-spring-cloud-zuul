@@ -1,6 +1,7 @@
 package study.springcloud.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
@@ -31,6 +32,11 @@ public class PostZFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         log.info("======> post filter");
+        RequestContext ctx = RequestContext.getCurrentContext();
+        log.info("{}", ctx.getRouteHost());
+
+        String uri = (String)ctx.get(FilterConstants.REQUEST_URI_KEY);
+        log.info("uri=============>{}",uri);
         return null;
     }
 }

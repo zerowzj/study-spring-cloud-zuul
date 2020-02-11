@@ -31,7 +31,7 @@ public class PreZFilter extends ZuulFilter {
     public Object run() {
         log.info("======> pre filter");
 //        if (1 == 1) {
-//            throw new RuntimeException("fasdfasd");
+//            throw new RuntimeException("PreZFilter");
 //        }
         return null;
     }
