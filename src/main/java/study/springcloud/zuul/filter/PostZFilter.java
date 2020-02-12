@@ -35,9 +35,11 @@ public class PostZFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
 
         String uri = (String) ctx.get(FilterConstants.REQUEST_URI_KEY);
-        String proxy = (String)ctx.get(FilterConstants.PROXY_KEY);
-        String serviceId = (String)ctx.get(FilterConstants.SERVICE_ID_KEY);
-        log.info("uri={}, proxy={}, serviceId={}", uri, proxy, serviceId);
+        String serviceId = (String) ctx.get(FilterConstants.SERVICE_ID_KEY);
+        log.info("uri={}, serviceId={}", uri, serviceId);
+
+        int statusCode = ctx.getResponseStatusCode();
+        log.info("status code= {}", statusCode);
         return null;
     }
 }

@@ -13,7 +13,7 @@ public class CustomFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain filterChain) throws IOException, ServletException {
-        log.info("12312312");
+        log.info("i am custom filter");
         filterChain.doFilter(request, response);
     }
 }
