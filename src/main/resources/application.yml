@@ -10,10 +10,10 @@ spring:
     name: study-springcloud-zuul
   main:
     web-application-type: servlet
-  #（▲）
   cloud:
+    #（▲）负载均衡
     loadbalancer:
-      #负载局衡器重试开关
+      #重试开关
       retry:
         enabled: true
 #====================

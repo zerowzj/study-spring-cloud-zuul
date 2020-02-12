@@ -19,7 +19,9 @@ public class WatchDogFilter extends OncePerRequestFilter {
 
     private static final String KEY_URI = "uri";
 
-    private static final String HEADER_KEY_REQUEST_ID = "";
+    private static final String KEY_REQUEST_ID = "request_id";
+
+    private static final String HEADER_KEY_REQUEST_ID = "Request-Id";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
@@ -27,11 +29,17 @@ public class WatchDogFilter extends OncePerRequestFilter {
         Stopwatch stopwatch = Stopwatch.createStarted();
         String uri = request.getRequestURI();
         MDC.put(KEY_URI, uri);
+        MDC.put(KEY_REQUEST_ID, uri);
         try {
             doFilter(request, response, filterChain);
         } finally {
             log.info("[{}] cost time {} ms", uri, stopwatch.elapsed(TimeUnit.MILLISECONDS));
             MDC.remove(KEY_URI);
+            MDC.remove(KEY_REQUEST_ID);
         }
+    }
+
+    private String abainRequestId(HttpServletRequest request) {
+        return null;
     }
 }
