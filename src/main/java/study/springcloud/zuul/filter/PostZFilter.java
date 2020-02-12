@@ -33,7 +33,6 @@ public class PostZFilter extends ZuulFilter {
     public Object run() throws ZuulException {
         log.info("======> post filter");
         RequestContext ctx = RequestContext.getCurrentContext();
-        log.info("{}", ctx.getRouteHost());
 
         String uri = (String) ctx.get(FilterConstants.REQUEST_URI_KEY);
         String proxy = (String)ctx.get(FilterConstants.PROXY_KEY);
