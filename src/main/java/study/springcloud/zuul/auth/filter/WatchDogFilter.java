@@ -2,6 +2,7 @@ package study.springcloud.zuul.auth.filter;
 
 import com.google.common.base.Stopwatch;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import study.springcloud.zuul.support.utils.MDCs;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
+@Order(1)
 public class WatchDogFilter extends OncePerRequestFilter {
 
     private static final String HEADER_KEY_REQUEST_ID = "Request-Id";
