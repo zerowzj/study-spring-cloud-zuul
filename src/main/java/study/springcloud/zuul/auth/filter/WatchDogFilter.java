@@ -2,9 +2,9 @@ package study.springcloud.zuul.auth.filter;
 
 import com.google.common.base.Stopwatch;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import study.springcloud.zuul.support.utils.MDCs;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -17,10 +17,6 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class WatchDogFilter extends OncePerRequestFilter {
 
-    private static final String KEY_URI = "uri";
-
-    private static final String KEY_REQUEST_ID = "request_id";
-
     private static final String HEADER_KEY_REQUEST_ID = "Request-Id";
 
     @Override
@@ -29,14 +25,12 @@ public class WatchDogFilter extends OncePerRequestFilter {
         Stopwatch stopwatch = Stopwatch.createStarted();
         String uri = request.getRequestURI();
         String requestId = obtainRequestId(request);
-        MDC.put(KEY_URI, uri);
-        MDC.put(KEY_REQUEST_ID, requestId);
+        MDCs.put(uri, requestId);
         try {
             doFilter(request, response, filterChain);
         } finally {
             log.info("[{}] cost time {} ms", uri, stopwatch.elapsed(TimeUnit.MILLISECONDS));
-            MDC.remove(KEY_URI);
-            MDC.remove(KEY_REQUEST_ID);
+            MDCs.remove();
         }
     }
 
