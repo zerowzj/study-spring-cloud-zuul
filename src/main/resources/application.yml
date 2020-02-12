@@ -33,7 +33,6 @@ zuul:
     study-springcloud-client-rest:
       path: /**
       service-id: study-springcloud-client-rest
-      #路由过滤
       sensitive-headers: "*"
   #（▲）隔离策略，THREAD和SEMAPHORE;
   ribbon-isolation-strategy: SEMAPHORE
