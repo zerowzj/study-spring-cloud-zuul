@@ -8,6 +8,9 @@ public class DemoController {
 
     @RequestMapping("/demo")
     public String demo() {
+        if (1 == 1) {
+            throw new RuntimeException("controller exception");
+        }
         return "this is demo";
     }
 }

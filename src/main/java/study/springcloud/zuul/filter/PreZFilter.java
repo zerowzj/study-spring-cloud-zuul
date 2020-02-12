@@ -36,9 +36,9 @@ public class PreZFilter extends ZuulFilter {
        String proxy = (String)ctx.get(FilterConstants.PROXY_KEY);
        log.info("===> {}, {}", proxy, uri);
        log.info("", uri);
-        if (1 == 1) {
-            throw new RuntimeException("PreZFilter");
-        }
+//        if (1 == 1) {
+//            throw new RuntimeException("PreZFilter");
+//        }
         return null;
     }
 }

@@ -16,9 +16,7 @@ spring:
       #重试开关
       retry:
         enabled: true
-#====================
-#（★）Eureka
-#====================
+#
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -26,9 +24,9 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: @eureka.client.defaultZone@
-#====================
+#==============================
 #（★）Route
-#====================
+#==============================
 zuul:
   #（▲）路由
   routes:
@@ -63,9 +61,9 @@ zuul:
   ignored-patterns: /**/hello/**
   #全局过滤
   sensitiveHeaders: Cookie,Set-Cookie,Authorization
-#====================
+#==============================
 #（★）Ribbon
-#====================
+#==============================
 ribbon:
   eureka:
     enabled: true
@@ -85,9 +83,10 @@ study-springcloud-provider:
     OkToRetryOnAllOperations: true
     MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 0
-#********************
+#==============================
 #（★）Hystrix
-#********************
+# 1.熔断针对网关对服务的调用，如无法找到服务、连接超时、读取超时
+#==============================
 hystrix:
   command:
     default:
@@ -112,7 +111,7 @@ hystrix:
         enabled: true
         #强制打开熔断器，如果打开这个开关，那么拒绝所有请求，默认false
         forceOpen: false
-        #  如果这个开关打开，circuit将一直关闭且忽略
+        #如果这个开关打开，circuit将一直关闭且忽略
         closedOpen: true
         #错误比率阀值，如果错误率>=该值，circuit会被打开，并短路所有请求触发fallback。默认50
         errorThresholdPercentage: 50
@@ -122,7 +121,7 @@ hystrix:
         requestVolumeThreshold: 20
       #（▲）回退，降级
       fallback:
-        enabled: true
+        enabled: false
         isolation:
           semaphore:
             maxConcurrentRequests: 50
