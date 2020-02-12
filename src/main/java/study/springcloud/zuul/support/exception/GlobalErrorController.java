@@ -39,8 +39,7 @@ public class GlobalErrorController implements ErrorController {
         String msg = (String) request.getAttribute(KEY_MESSAGE);
 
         Map<String, Object> body = Results.error("9999", "系统异常");
-        MultiValueMap<String, String> headers = null;
-        ResponseEntity<Map<String, Object>> entity = new ResponseEntity(body, headers, HttpStatus.OK);
+        ResponseEntity<Map<String, Object>> entity = new ResponseEntity(body, HttpStatus.OK);
         return entity;
     }
 }
