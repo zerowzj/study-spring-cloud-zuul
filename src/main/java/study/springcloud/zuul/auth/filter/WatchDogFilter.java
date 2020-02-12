@@ -28,8 +28,9 @@ public class WatchDogFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         Stopwatch stopwatch = Stopwatch.createStarted();
         String uri = request.getRequestURI();
+        String requestId = obtainRequestId(request);
         MDC.put(KEY_URI, uri);
-        MDC.put(KEY_REQUEST_ID, uri);
+        MDC.put(KEY_REQUEST_ID, requestId);
         try {
             doFilter(request, response, filterChain);
         } finally {
@@ -39,7 +40,7 @@ public class WatchDogFilter extends OncePerRequestFilter {
         }
     }
 
-    private String abainRequestId(HttpServletRequest request) {
-        return null;
+    private String obtainRequestId(HttpServletRequest request) {
+        return request.getHeader(HEADER_KEY_REQUEST_ID);
     }
 }

@@ -33,9 +33,7 @@ public class PreZFilter extends ZuulFilter {
         log.info("======> pre filter");
         RequestContext ctx = RequestContext.getCurrentContext();
        String uri = (String) ctx.get(FilterConstants.REQUEST_URI_KEY);
-       String proxy = (String)ctx.get(FilterConstants.PROXY_KEY);
-       log.info("===> {}, {}", proxy, uri);
-       log.info("", uri);
+       log.info("uri={}", uri);
 //        if (1 == 1) {
 //            throw new RuntimeException("PreZFilter");
 //        }
