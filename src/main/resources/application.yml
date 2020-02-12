@@ -30,9 +30,9 @@ eureka:
 zuul:
   #（▲）路由
   routes:
-    study-springcloud-provider:
+    study-springcloud-client-rest:
       path: /**
-      service-id: study-springcloud-provider
+      service-id: study-springcloud-client-rest
       #路由过滤
       sensitive-headers: "*"
   #（▲）隔离策略，THREAD和SEMAPHORE;
@@ -76,7 +76,7 @@ ribbon:
   MaxAutoRetries: 1
   #在其他Server上重试的次数（除去首次）
   MaxAutoRetriesNextServer: 1
-study-springcloud-provider:
+study-springcloud-client-rest:
   ribbon:
     ConnectTimeout: 3000
     ReadTimeout: 3000
