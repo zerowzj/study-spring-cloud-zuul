@@ -1,6 +1,7 @@
 package study.springcloud.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
@@ -30,9 +31,14 @@ public class PreZFilter extends ZuulFilter {
     @Override
     public Object run() {
         log.info("======> pre filter");
-//        if (1 == 1) {
-//            throw new RuntimeException("PreZFilter");
-//        }
+        RequestContext ctx = RequestContext.getCurrentContext();
+       String uri = (String) ctx.get(FilterConstants.REQUEST_URI_KEY);
+       String proxy = (String)ctx.get(FilterConstants.PROXY_KEY);
+       log.info("===> {}, {}", proxy, uri);
+       log.info("", uri);
+        if (1 == 1) {
+            throw new RuntimeException("PreZFilter");
+        }
         return null;
     }
 }
