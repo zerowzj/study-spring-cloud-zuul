@@ -8,8 +8,8 @@ import javax.servlet.*;
 import java.io.IOException;
 
 @Slf4j
-@Component
 @Order(2)
+@Component
 public class CustomFilter implements Filter {
 
     @Override

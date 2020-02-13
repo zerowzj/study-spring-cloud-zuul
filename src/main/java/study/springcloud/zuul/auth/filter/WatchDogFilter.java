@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-@Component
 @Order(1)
+@Component
 public class WatchDogFilter extends OncePerRequestFilter {
 
     private static final String HEADER_KEY_REQUEST_ID = "Request-Id";
