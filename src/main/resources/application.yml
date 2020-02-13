@@ -28,27 +28,21 @@ eureka:
 #（★）Route
 #==============================
 zuul:
-  #（▲）路由
-  routes:
-    study-springcloud-client-rest:
-      path: /**
-      service-id: study-springcloud-client-rest
-      sensitive-headers: "*"
-  #（▲）隔离策略，THREAD和SEMAPHORE;
+  #（▲）ribbon隔离策略，THREAD和SEMAPHORE
   ribbon-isolation-strategy: SEMAPHORE
   semaphore:
     max-semaphores: 100
   thread-pool:
     use-separate-thread-pools: false
     thread-pool-key-prefix: PREFIX
-  #（▲）网关重试开关
-  retryable: true
   #（▲）主机配置
   host:
     connect-timeout-millis: 2000
     socket-timeout-millis: 10000
     max-total-connections: 200
     max-per-route-connections: 20
+  #（▲）网关重试开关
+  retryable: true
   #（▲）饥饿加载
   ribbon:
     eager-load: true
@@ -60,6 +54,12 @@ zuul:
   ignored-patterns: /**/hello/**
   #全局过滤
   sensitiveHeaders: Cookie,Set-Cookie,Authorization
+  #（▲）路由配置
+  routes:
+    study-springcloud-client-rest:
+      path: /**
+      service-id: study-springcloud-client-rest
+      sensitive-headers: "*"
 #==============================
 #（★）Ribbon
 #==============================
@@ -94,9 +94,9 @@ hystrix:
         timeout:
           #执行是否启用超时，默认启用true
           enabled: true
-        #隔离策略，默认是Thread, 可选Thread｜Semaphore
+        #hystrix隔离策略，默认是THREAD, 可选THREAD和SEMAPHORE
         isolation:
-          strategy: Thread
+          strategy: THREAD
           thread:
             #命令执行超时时间，默认1000ms，时间应该大于ribbon全部重试时间的总和
             timeoutInMilliseconds: 20000
