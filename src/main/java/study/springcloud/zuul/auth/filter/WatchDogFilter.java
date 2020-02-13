@@ -30,9 +30,9 @@ public class WatchDogFilter extends OncePerRequestFilter {
         String requestId = obtainRequestId(request);
         MDCs.put(uri, requestId);
         try {
-            doFilter(request, response, filterChain);
+            filterChain.doFilter(request, response);
         } finally {
-            log.info("[{}] cost time {} ms", uri, stopwatch.elapsed(TimeUnit.MILLISECONDS));
+            log.info("[{}] cost time [{} ms]", uri, stopwatch.elapsed(TimeUnit.MILLISECONDS));
             MDCs.remove();
         }
     }

@@ -1,65 +1,49 @@
-#
-server:
-  port: 7200
-#
-logging:
-  config: classpath:logback.xml
-#
-spring:
-  application:
-    name: study-springcloud-zuul
-  main:
-    web-application-type: servlet
-  cloud:
-    #（▲）负载均衡
-    loadbalancer:
-      #重试开关
-      retry:
-        enabled: true
-#
-eureka:
-  instance:
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-  client:
-    fetch-registry: true
-    service-url:
-      defaultZone: @eureka.client.defaultZone@
 #==============================
 #（★）Route
+# 1.以服务名(可以是注册中心发现或者自定义serviceId)进行代理的那些服务，它们的超时由ribbon控制
+# 2.对于指定url路由的服务，超时则由zuul.host设定
 #==============================
 zuul:
-  #（▲）ribbon隔离策略，THREAD和SEMAPHORE
+  #（▲）
+  #忽略表达式
+  ignored-services: aa
+  ignored-headers: Cookie
+  ignored-patterns: /hello/**
+  #全局过滤
+  sensitive-headers: Cookie,Set-Cookie,Authorization
+  #（▲）路由配置
+  routes:
+    #prefix: /api
+    study-springcloud-client-rest:
+      #id:
+      path: /client/rest/**
+      service-id: study-springcloud-client-rest
+      #url:
+      #strip-prefix:
+      #retryable: false
+      #sensitive-headers:
+      #custom-sensitive-headers: false
+  #（▲）ribbon配置
+  #隔离策略，SEMAPHORE（默认）和THREAD
   ribbon-isolation-strategy: SEMAPHORE
   semaphore:
     max-semaphores: 100
   thread-pool:
     use-separate-thread-pools: false
     thread-pool-key-prefix: PREFIX
-  #（▲）主机配置
+  #饥饿加载
+  ribbon:
+    eager-load: true
+  #（▲）host配置
   host:
+    #超时时间
     connect-timeout-millis: 2000
     socket-timeout-millis: 10000
+    #连接数
     max-total-connections: 200
     max-per-route-connections: 20
   #（▲）网关重试开关
   retryable: true
-  #（▲）饥饿加载
-  ribbon:
-    eager-load: true
-  #路由前缀
-  prefix: /api
-  #忽略表达式
-  ignored-services: aa
-  ignored-headers: Cookie
-  ignored-patterns: /**/hello/**
-  #全局过滤
-  sensitiveHeaders: Cookie,Set-Cookie,Authorization
-  #（▲）路由配置
-  routes:
-    study-springcloud-client-rest:
-      path: /**
-      service-id: study-springcloud-client-rest
-      sensitive-headers: "*"
 #==============================
 #（★）Ribbon
 #==============================
@@ -139,3 +123,29 @@ hystrix:
 #    resource:
 #      jwt:
 #        key-value: spring123
+#
+server:
+  port: 7200
+#
+logging:
+  config: classpath:logback.xml
+#
+spring:
+  application:
+    name: study-springcloud-zuul
+  main:
+    web-application-type: servlet
+  cloud:
+    #（▲）负载均衡
+    loadbalancer:
+      #重试开关
+      retry:
+        enabled: true
+#
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: @eureka.client.defaultZone@
