@@ -14,7 +14,7 @@ spring:
 zuul:
   #（▲）
   #忽略表达式
-  ignored-services: aa
+  ignored-services: study-springcloud
   ignored-headers: Cookie
   ignored-patterns: /hello/**
   #全局过滤
