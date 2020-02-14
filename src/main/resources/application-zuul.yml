@@ -1,0 +1,134 @@
+#
+spring:
+  cloud:
+    #（▲）负载均衡
+    loadbalancer:
+      #重试开关
+      retry:
+        enabled: true
+#==============================
+#（★）Route
+# 1.以服务名(可以是注册中心发现或者自定义serviceId)进行代理的那些服务，它们的超时由ribbon控制
+# 2.对于指定url路由的服务，超时则由zuul.host设定
+#==============================
+zuul:
+  #（▲）
+  #忽略表达式
+  ignored-services: aa
+  ignored-headers: Cookie
+  ignored-patterns: /hello/**
+  #全局过滤
+  sensitive-headers: Cookie,Set-Cookie,Authorization
+  #（▲）路由配置
+  routes:
+    #prefix: /api
+    study-springcloud-client-rest:
+      #id:
+      path: /client/rest/**
+      service-id: study-springcloud-client-rest
+      #url:
+      #strip-prefix:
+      #retryable: false
+      #sensitive-headers:
+      #custom-sensitive-headers: false
+  #（▲）ribbon配置
+  #隔离策略，SEMAPHORE（默认）和THREAD
+  ribbon-isolation-strategy: SEMAPHORE
+  semaphore:
+    max-semaphores: 100
+  thread-pool:
+    use-separate-thread-pools: false
+    thread-pool-key-prefix: PREFIX
+  #饥饿加载
+  ribbon:
+    eager-load: true
+  #（▲）host配置
+  host:
+    #超时时间
+    connect-timeout-millis: 2000
+    socket-timeout-millis: 10000
+    #连接数
+    max-total-connections: 200
+    max-per-route-connections: 20
+  #（▲）网关重试开关
+  retryable: true
+#==============================
+#（★）Ribbon
+#==============================
+ribbon:
+  eureka:
+    enabled: true
+  #连接和读取超时时间
+  ConnectTimeout: 5000
+  ReadTimeout: 5000
+  #所有操作都支持重试的开关
+  OkToRetryOnAllOperations: true
+  #出错或超时，Server重试的次数（除去首次）
+  MaxAutoRetries: 1
+  #在其他Server上重试的次数（除去首次）
+  MaxAutoRetriesNextServer: 1
+study-springcloud-client-rest:
+  ribbon:
+    ConnectTimeout: 3000
+    ReadTimeout: 3000
+    OkToRetryOnAllOperations: true
+    MaxAutoRetries: 0
+    MaxAutoRetriesNextServer: 0
+#==============================
+#（★）Hystrix
+# 1.熔断针对网关对服务的调用，如无法找到服务、连接超时、读取超时
+#==============================
+hystrix:
+  command:
+    default:
+      #（▲）执行
+      execution:
+        timeout:
+          #执行是否启用超时，默认启用true
+          enabled: true
+        #hystrix隔离策略，默认是THREAD, 可选THREAD和SEMAPHORE
+        isolation:
+          strategy: THREAD
+          thread:
+            #命令执行超时时间，默认1000ms，时间应该大于ribbon全部重试时间的总和
+            timeoutInMilliseconds: 20000
+            #发生超时是是否中断，默认true
+            interruptOnTimeout: true
+          semaphore:
+            maxConcurrentRequests: 100
+      #（▲）熔断
+      circuitBreaker:
+        #用来跟踪circuit的健康性，如果未达标则让请求短路。默认true
+        enabled: true
+        #强制打开熔断器，如果打开这个开关，那么拒绝所有请求，默认false
+        forceOpen: false
+        #如果这个开关打开，circuit将一直关闭且忽略
+        closedOpen: true
+        #错误比率阀值，如果错误率>=该值，circuit会被打开，并短路所有请求触发fallback。默认50
+        errorThresholdPercentage: 50
+        #触发短路的时间值，当该值设为5000时，则当触发circuit break后的5000毫秒内都会拒绝request，也就是5000毫秒后才会关闭circuit
+        sleepWindowInMilliseconds: 100
+        #
+        requestVolumeThreshold: 20
+      #（▲）回退，降级
+      fallback:
+        enabled: false
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 50
+#==============================
+#（★）OAuth2
+#==============================
+#security:
+#  #  basic:
+#  #    enabled: false
+#  oauth2:
+#    client:
+#      access-token-uri: http://114.67.102.8:7010
+#      user-authorization-uri: http://114.67.102.8:7010
+#      client-id: client_1
+#      client-secret: secret_1
+#    resource:
+#      jwt:
+#        key-value: spring123
+#
