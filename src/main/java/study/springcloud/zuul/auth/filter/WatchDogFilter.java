@@ -27,17 +27,14 @@ public class WatchDogFilter extends OncePerRequestFilter {
         log.info("i am watch dog");
         Stopwatch stopwatch = Stopwatch.createStarted();
         String uri = request.getRequestURI();
-        String requestId = obtainRequestId(request);
+        String requestId = request.getHeader(HEADER_KEY_REQUEST_ID);
         MDCs.put(uri, requestId);
+        
         try {
             filterChain.doFilter(request, response);
         } finally {
             log.info("[{}] cost time [{} ms]", uri, stopwatch.elapsed(TimeUnit.MILLISECONDS));
             MDCs.remove();
         }
-    }
-
-    private String obtainRequestId(HttpServletRequest request) {
-        return request.getHeader(HEADER_KEY_REQUEST_ID);
     }
 }

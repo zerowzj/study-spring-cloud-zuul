@@ -13,6 +13,15 @@
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] [%5level] [%class:%line] [%X{uri}] [%X{request_id}] - %m%n</pattern>
         </encoder>
+        <!-- 过滤器 -->
+<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+<!--            <level>ERROR</level>-->
+<!--            <onMatch>ACCEPT</onMatch>-->
+<!--            <onMismatch>DENY</onMismatch>-->
+<!--        </filter>-->
+        <!-- 滚动策略 -->
+        <!-- SizeAndTimeBasedRollingPolicy -->
+        <!-- SizeAndTimeBasedRollingPolicy -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/web.log.%d{yyyy-MM-dd}</fileNamePattern>
             <MaxHistory>30</MaxHistory>
@@ -20,7 +29,7 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="STDOUT"/>
+<!--        <appender-ref ref="STDOUT"/>-->
         <appender-ref ref="FILE"/>
     </root>
 </configuration>

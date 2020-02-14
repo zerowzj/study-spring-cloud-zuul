@@ -45,8 +45,8 @@ zuul:
   #（▲）host配置
   host:
     #超时时间
-    connect-timeout-millis: 2000
-    socket-timeout-millis: 10000
+    connect-timeout-millis: 5000
+    socket-timeout-millis: 5000
     #连接数
     max-total-connections: 200
     max-per-route-connections: 20

@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Throwable.class)
     public Map<String, Object> handle(Throwable ex) {
         Map<String, Object> result = new HashMap<>();
-        result.put("code", "zuul-9999");
+        result.put("code", "9999");
         result.put("desc", ex.getMessage());
         return result;
     }
