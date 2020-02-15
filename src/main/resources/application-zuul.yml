@@ -30,7 +30,7 @@ zuul:
   #隔离策略，SEMAPHORE（默认）和THREAD
   ribbon-isolation-strategy: SEMAPHORE
   semaphore:
-    max-semaphores: 100
+    max-semaphores: 10
   thread-pool:
     use-separate-thread-pools: false
     thread-pool-key-prefix: PREFIX

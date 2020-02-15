@@ -38,7 +38,7 @@ public class GlobalErrorController implements ErrorController {
         Exception ex = (Exception) request.getAttribute(KEY_EXCEPTION);
         String msg = (String) request.getAttribute(KEY_MESSAGE);
 
-        Map<String, Object> body = Results.error("9999", "系统异常（zuul error controller）");
+        Map<String, Object> body = Results.error("9999", "系统异常（zuul ErrorController）");
         ResponseEntity<Map<String, Object>> entity = new ResponseEntity(body, HttpStatus.OK);
         return entity;
     }
