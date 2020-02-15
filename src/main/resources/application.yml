@@ -4,6 +4,14 @@ server:
 logging:
   config: classpath:logback.xml
 #
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: @eureka.server.list@
+#
 spring:
   application:
     name: study-springcloud-zuul
@@ -12,11 +20,3 @@ spring:
   profiles:
     active: zuul
 #    active: zuul-hystrix
-#
-eureka:
-  instance:
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-  client:
-    fetch-registry: true
-    service-url:
-      defaultZone: @eureka.server.list@
