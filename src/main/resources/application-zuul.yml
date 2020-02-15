@@ -1,10 +1,10 @@
 #==============================
 #（★）Route
-#==============================
 # 1.超时
 #（a）以服务名（可以是注册中心发现或者自定义serviceId）进行代理的那些服务，
 #     它们的超时由ribbon控制
 #（b）对于指定url路由的服务，超时则由zuul.host设定
+#==============================
 zuul:
   #（▲）忽略表达式
   ignored-services: study-springcloud
@@ -46,27 +46,3 @@ zuul:
     max-per-route-connections: 20
   #（▲）网关重试开关
   retryable: true
-#==============================
-#（★）Ribbon
-#==============================
-ribbon:
-  #（▲）Eureka配置
-  eureka:
-    enabled: true
-  #（▲）连接和读取超时时间
-  ConnectTimeout: 50000
-  ReadTimeout: 50000
-  #（▲）重试
-  #所有操作都支持重试的开关
-  OkToRetryOnAllOperations: true
-  #出错或超时，Server重试的次数（除去首次）
-  MaxAutoRetries: 1
-  #在其他Server上重试的次数（除去首次）
-  MaxAutoRetriesNextServer: 1
-#study-springcloud-client-rest:
-#  ribbon:
-#    ConnectTimeout: 3000
-#    ReadTimeout: 3000
-#    OkToRetryOnAllOperations: true
-#    MaxAutoRetries: 0
-#    MaxAutoRetriesNextServer: 0
