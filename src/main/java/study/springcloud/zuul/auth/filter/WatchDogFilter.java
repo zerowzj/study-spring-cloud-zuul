@@ -24,12 +24,12 @@ public class WatchDogFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        log.info("i am watch dog");
         Stopwatch stopwatch = Stopwatch.createStarted();
         String uri = request.getRequestURI();
         String requestId = request.getHeader(HEADER_KEY_REQUEST_ID);
         MDCs.put(uri, requestId);
-        
+
+        log.info("i am watch dog");
         try {
             filterChain.doFilter(request, response);
         } finally {

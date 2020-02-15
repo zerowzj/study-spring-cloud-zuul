@@ -18,6 +18,6 @@ spring:
   main:
     web-application-type: servlet
   profiles:
-    active: zuul
-#    active: zuul,ribbon
+#    active: zuul
+    active: zuul,ribbon
 #    active: zuul,hystrix

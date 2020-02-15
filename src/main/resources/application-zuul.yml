@@ -14,23 +14,26 @@ zuul:
   ignore-security-headers: true
   #（▲）全局过滤
   sensitive-headers: Cookie,Set-Cookie,Authorization
+  #（▲）网关重试开关
+  retryable: true
+  #====================
   #（▲）路由配置
+  #====================
   routes:
     #prefix: /api
     study-springcloud-client-rest:
-      #id:
       path: /client/rest/**
       service-id: study-springcloud-client-rest
   #====================
   #（▲）Ribbon配置
   #====================
-  #隔离策略，SEMAPHORE（默认）和THREAD
+  #隔离策略，可选SEMAPHORE和THREAD，默认SEMAPHORE
   ribbon-isolation-strategy: SEMAPHORE
   semaphore:
     max-semaphores: 10
   thread-pool:
     use-separate-thread-pools: false
-    thread-pool-key-prefix: PREFIX
+    thread-pool-key-prefix: PREFIX-
   #饥饿加载
   ribbon:
     eager-load: true
@@ -44,5 +47,6 @@ zuul:
     #连接数
     max-total-connections: 200
     max-per-route-connections: 20
-  #（▲）网关重试开关
-  retryable: true
+#
+#hystrix:
+#  cin
