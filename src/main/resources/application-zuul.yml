@@ -21,12 +21,9 @@ zuul:
       #id:
       path: /client/rest/**
       service-id: study-springcloud-client-rest
-      #url:
-      #strip-prefix:
-      #retryable: false
-      #sensitive-headers:
-      #custom-sensitive-headers: false
+  #====================
   #（▲）Ribbon配置
+  #====================
   #隔离策略，SEMAPHORE（默认）和THREAD
   ribbon-isolation-strategy: SEMAPHORE
   semaphore:
@@ -37,7 +34,9 @@ zuul:
   #饥饿加载
   ribbon:
     eager-load: true
+  #====================
   #（▲）Host配置
+  #====================
   host:
     #超时时间
     connect-timeout-millis: 5000
@@ -54,18 +53,18 @@ ribbon:
   eureka:
     enabled: true
   #连接和读取超时时间
-  ConnectTimeout: 5000
-  ReadTimeout: 5000
+  ConnectTimeout: 50000
+  ReadTimeout: 50000
   #所有操作都支持重试的开关
   OkToRetryOnAllOperations: true
   #出错或超时，Server重试的次数（除去首次）
   MaxAutoRetries: 1
   #在其他Server上重试的次数（除去首次）
   MaxAutoRetriesNextServer: 1
-study-springcloud-client-rest:
-  ribbon:
-    ConnectTimeout: 3000
-    ReadTimeout: 3000
-    OkToRetryOnAllOperations: true
-    MaxAutoRetries: 0
-    MaxAutoRetriesNextServer: 0
+#study-springcloud-client-rest:
+#  ribbon:
+#    ConnectTimeout: 3000
+#    ReadTimeout: 3000
+#    OkToRetryOnAllOperations: true
+#    MaxAutoRetries: 0
+#    MaxAutoRetriesNextServer: 0

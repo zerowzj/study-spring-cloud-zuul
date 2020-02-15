@@ -9,7 +9,7 @@ import java.io.IOException;
 
 @Slf4j
 @Order(2)
-@Component
+//@Component
 public class CustomFilter implements Filter {
 
     @Override
