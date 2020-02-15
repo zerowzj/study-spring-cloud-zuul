@@ -50,11 +50,13 @@ zuul:
 #（★）Ribbon
 #==============================
 ribbon:
+  #（▲）Eureka配置
   eureka:
     enabled: true
-  #连接和读取超时时间
+  #（▲）连接和读取超时时间
   ConnectTimeout: 50000
   ReadTimeout: 50000
+  #（▲）重试
   #所有操作都支持重试的开关
   OkToRetryOnAllOperations: true
   #出错或超时，Server重试的次数（除去首次）

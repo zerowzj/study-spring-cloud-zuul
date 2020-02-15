@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     public Map<String, Object> handle(Throwable ex) {
         Map<String, Object> result = new HashMap<>();
         result.put("code", "9999");
-        result.put("desc", ex.getMessage());
+        result.put("desc", "系统异常（@ControllerAdvice）");
         return result;
     }
 }

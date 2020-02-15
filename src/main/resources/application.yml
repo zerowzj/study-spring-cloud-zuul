@@ -19,4 +19,4 @@ spring:
     web-application-type: servlet
   profiles:
     active: zuul
-#    active: zuul-hystrix
+#    active: zuul,hystrix
