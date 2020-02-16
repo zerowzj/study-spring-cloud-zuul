@@ -21,9 +21,8 @@ zuul:
   #（▲）路由配置
   #==============================
   routes:
-    prefix: /api
-    strip-prefix: true
-    str
+    #prefix: /api
+    #strip-prefix: true
     study-springcloud-client-rest:
       path: /client/rest/**
       service-id: study-springcloud-client-rest

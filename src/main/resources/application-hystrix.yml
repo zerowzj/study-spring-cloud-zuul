@@ -1,14 +1,15 @@
-#==============================
+#******************************
 #（★）Hystrix
 # 1.熔断针对网关对服务的调用，
-# （1）如无法找到服务、连接超时、读取超时
-# （2）
-# 2。
-#==============================
+# （a）如无法找到服务、连接超时、读取超时
+# （b）
+#******************************
 hystrix:
   command:
     default:
+      #==============================
       #（▲）执行
+      #==============================
       execution:
         timeout:
           #执行是否启用超时，默认启用true
@@ -23,7 +24,9 @@ hystrix:
             interruptOnTimeout: true
           semaphore:
             maxConcurrentRequests: 100
+      #==============================
       #（▲）熔断
+      #==============================
       circuitBreaker:
         #用来跟踪circuit的健康性，如果未达标则让请求短路。默认true
         enabled: true
@@ -37,7 +40,9 @@ hystrix:
         sleepWindowInMilliseconds: 100
         #
         requestVolumeThreshold: 20
+      #==============================
       #（▲）回退（服务降级）
+      #==============================
       fallback:
         enabled: false
         isolation:
