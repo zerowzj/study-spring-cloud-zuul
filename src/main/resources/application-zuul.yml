@@ -26,11 +26,14 @@ zuul:
     study-springcloud-client-rest:
       path: /client/rest/**
       service-id: study-springcloud-client-rest
+      semaphore:
+        max-semaphores: 10
   #==============================
   #（▲）Ribbon配置
   # 1.隔离策略
   #（a）信号量隔离时
   #（b）线程隔离时，可通过hystrix配置线程
+  #（c）全局配置和服务配置
   #==============================
   #隔离策略，可选SEMAPHORE和THREAD，默认SEMAPHORE
   ribbon-isolation-strategy: SEMAPHORE
