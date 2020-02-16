@@ -22,10 +22,10 @@ ribbon:
   #在其他Server上重试的次数（除去首次）
   MaxAutoRetriesNextServer: 1
 
-study-springcloud-client-rest:
-  ribbon:
-    ConnectTimeout: 3000
-    ReadTimeout: 4000
-    OkToRetryOnAllOperations: true
-    MaxAutoRetries: 0
-    MaxAutoRetriesNextServer: 0
+#study-springcloud-client-rest:
+#  ribbon:
+#    ConnectTimeout: 3000
+#    ReadTimeout: 4000
+#    OkToRetryOnAllOperations: true
+#    MaxAutoRetries: 0
+#    MaxAutoRetriesNextServer: 0

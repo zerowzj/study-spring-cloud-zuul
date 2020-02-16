@@ -13,7 +13,8 @@ zuul:
   #====================
   #（▲）网关重试开关
   # 1.引入依赖spring-retry
-  # 2.
+  # 2.配置zuul.retryable=true
+  # 3.配置ribbon参数
   #====================
   retryable: true
   #====================
