@@ -28,7 +28,8 @@ zuul:
   #==============================
   #（▲）Ribbon配置
   # 1.隔离策略
-  #（a）线程隔离时，可通过hystrix配置线程
+  #（a）信号量隔离时
+  #（b）线程隔离时，可通过hystrix配置线程
   #==============================
   #隔离策略，可选SEMAPHORE和THREAD，默认SEMAPHORE
   ribbon-isolation-strategy: SEMAPHORE
@@ -39,7 +40,8 @@ zuul:
     thread-pool-key-prefix: PREFIX-
   #饥饿加载
   ribbon:
-    eager-load: true
+    eager-load:
+      enabled: true
   #==============================
   #（▲）Host配置
   # 1.超时
