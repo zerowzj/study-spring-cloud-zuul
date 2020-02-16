@@ -1,9 +1,5 @@
 #==============================
 #（★）Route
-# 1.超时
-#（a）以服务名（可以是注册中心发现或者自定义serviceId）进行代理的那些服务，
-#     它们的超时由ribbon控制
-#（b）对于指定url路由的服务，超时则由zuul.host设定
 #==============================
 zuul:
   #（▲）忽略表达式
@@ -14,10 +10,17 @@ zuul:
   ignore-security-headers: true
   #（▲）全局过滤
   sensitive-headers: Cookie,Set-Cookie,Authorization
+  #====================
   #（▲）网关重试开关
+  # 1.引入依赖spring-retry
+  # 2.
+  #====================
   retryable: true
   #====================
   #（▲）路由配置
+  # 1.超时
+  #（a）以serviceId（注册中心发现或自定义）进行代理的服务，超时由ribbon控制
+  #（b）以url路由的服务，超时则由zuul.host控制
   #====================
   routes:
     #prefix: /api
@@ -26,6 +29,8 @@ zuul:
       service-id: study-springcloud-client-rest
   #====================
   #（▲）Ribbon配置
+  # 1.隔离策略
+  #（a）线程隔离时，需要
   #====================
   #隔离策略，可选SEMAPHORE和THREAD，默认SEMAPHORE
   ribbon-isolation-strategy: SEMAPHORE
