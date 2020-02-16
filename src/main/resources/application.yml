@@ -17,6 +17,7 @@ spring:
     name: study-springcloud-zuul
   main:
     web-application-type: servlet
+    banner-mode: 'console'
   profiles:
 #    active: zuul
     active: zuul,ribbon
