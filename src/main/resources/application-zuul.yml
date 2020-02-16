@@ -30,7 +30,7 @@ zuul:
   #====================
   #（▲）Ribbon配置
   # 1.隔离策略
-  #（a）线程隔离时，需要
+  #（a）线程隔离时，可通过histrix配置线程
   #====================
   #隔离策略，可选SEMAPHORE和THREAD，默认SEMAPHORE
   ribbon-isolation-strategy: SEMAPHORE
