@@ -21,4 +21,4 @@ spring:
   profiles:
 #    active: zuul
     active: zuul,ribbon
-#    active: zuul,hystrix
+#    active: zuul,ribbon,hystrix
