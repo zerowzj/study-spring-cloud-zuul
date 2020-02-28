@@ -1,5 +1,6 @@
 version: '3.6'
 services:
+  #
   zuul-server1:
     image: study/study-springcloud-zuul:1
     ports:
@@ -11,6 +12,7 @@ services:
       - /xdfapp:/xdfapp
     networks:
       - overlay_net
+  #
   zuul-server2:
     image: study/study-springcloud-zuul:1
     ports:
@@ -22,7 +24,6 @@ services:
       - /xdfapp:/xdfapp
     networks:
       - overlay_net
-
 networks:
   overlay_net:
     external: true
