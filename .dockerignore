@@ -1,0 +1,8 @@
+#
+doc
+src
+#
+*.iml
+#
+target
+!target/study-springcloud-zuul-1.0.jar
