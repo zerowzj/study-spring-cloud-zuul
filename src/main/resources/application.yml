@@ -1,5 +1,5 @@
 server:
-  port: 7200
+  port: @server.port@
 #
 logging:
   config: classpath:logback.xml
@@ -17,7 +17,7 @@ spring:
     name: study-springcloud-zuul
   main:
     web-application-type: servlet
-    banner-mode: 'console'
+    banner-mode: console
   profiles:
 #    active: zuul
     active: zuul,ribbon
