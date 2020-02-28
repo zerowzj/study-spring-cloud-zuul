@@ -10,6 +10,9 @@ services:
       - EUREKA_SERVER_LIST=http://eureka-server1:7101/eureka/,http://eureka-server2:7102/eureka/
     volumes:
       - /xdfapp:/xdfapp
+    extra_hosts:
+      - eureka-server1:172.17.0.1
+      - eureka-server2:172.17.0.1
     networks:
       - overlay_net
   #
@@ -18,10 +21,13 @@ services:
     ports:
       - "7202:7202"
     environment:
-      - SERVER_PORT=72002
+      - SERVER_PORT=7202
       - EUREKA_SERVER_LIST=http://eureka-server1:7101/eureka/,http://eureka-server2:7102/eureka/
     volumes:
       - /xdfapp:/xdfapp
+    extra_hosts:
+      - eureka-server1:172.17.0.1
+      - eureka-server2:172.17.0.1
     networks:
       - overlay_net
 networks:
