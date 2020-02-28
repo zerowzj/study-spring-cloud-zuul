@@ -59,6 +59,3 @@ zuul:
     #连接数
     max-total-connections: 200
     max-per-route-connections: 20
-#
-#hystrix:
-#  cin
