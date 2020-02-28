@@ -1,3 +1,4 @@
+#
 server:
   port: @server.port@
 #
@@ -19,6 +20,6 @@ spring:
     web-application-type: servlet
     banner-mode: console
   profiles:
-#    active: zuul
-    active: zuul,ribbon
+    active: zuul
+#    active: zuul,ribbon
 #    active: zuul,ribbon,hystrix
