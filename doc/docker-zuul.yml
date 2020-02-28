@@ -7,7 +7,7 @@ services:
       - "7200:7200"
     environment:
       - SERVER_PORT=7200
-      - EUREKA_SERVER_LIST=http://eureka-server2:7102/eureka/
+      - EUREKA_SERVER_LIST=http://eureka-server1:7101/eureka/,http://eureka-server2:7102/eureka/
     volumes:
       - /xdfapp:/xdfapp
     networks:
