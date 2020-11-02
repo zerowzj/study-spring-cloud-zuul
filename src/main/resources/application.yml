@@ -12,14 +12,18 @@ spring:
     web-application-type: servlet
     banner-mode: off
   profiles:
-    active: zuul
+    active: zuul, @env@
 #    active: zuul,ribbon
 #    active: zuul,ribbon,hystrix
 #
 eureka:
   instance:
+    hostname: ${spring.application.name}
+    #ip-address:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
   client:
-    fetch-registry: true
     service-url:
       defaultZone: @eureka.server.list@
+    fetch-registry: true
+    register-with-eureka: true
