@@ -13,8 +13,8 @@ spring:
     banner-mode: off
   profiles:
     active: zuul, @env@
-#    active: zuul,ribbon
-#    active: zuul,ribbon,hystrix
+#    active: zuul,ribbon,@env@
+#    active: zuul,ribbon,hystrix,@env@
 #
 eureka:
   instance:
