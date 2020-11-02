@@ -1,9 +1,20 @@
 #
 server:
-  port: @server.port@
+  port: 7200
 #
 logging:
-  config: classpath:logback.xml
+  config: classpath:logback-spring.xml
+#
+spring:
+  application:
+    name: study-springcloud-zuul
+  main:
+    web-application-type: servlet
+    banner-mode: off
+  profiles:
+    active: zuul
+#    active: zuul,ribbon
+#    active: zuul,ribbon,hystrix
 #
 eureka:
   instance:
@@ -12,14 +23,3 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: @eureka.server.list@
-#
-spring:
-  application:
-    name: study-springcloud-zuul
-  main:
-    web-application-type: servlet
-    banner-mode: console
-  profiles:
-    active: zuul
-#    active: zuul,ribbon
-#    active: zuul,ribbon,hystrix
